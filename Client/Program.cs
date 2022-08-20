@@ -13,8 +13,8 @@ namespace Client
             {
                 if (opcao == 1)
                 {
-                    var resultado = BuscarTodos();
-                    //mostra os dados na tela
+                    var resultado = BuscarTodos(); //mostra os dados na tela
+
                     foreach (var item in resultado)
                     {
                         Console.WriteLine("=====================================");
