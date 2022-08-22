@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Client;
 
 namespace Client
 {
@@ -18,7 +23,7 @@ namespace Client
                     foreach (var item in resultado)
                     {
                         Console.WriteLine("=====================================");
-                        Console.WriteLine("Id: " + item.Id);
+                        Console.WriteLine("Id: " + item.);
                         Console.WriteLine("Nome: " + item.Nome);
                         Console.WriteLine("CPF: " + item.Cpf);
                         Console.WriteLine("Idade: " + item.Idade);
@@ -26,45 +31,45 @@ namespace Client
                     }
                 }
 
-                //if (opcao == 2)
-                //{
-                //    Console.WriteLine("Informe os dados da pessoa:");
+                if (opcao == 2)
+                {
+                    Console.WriteLine("Informe os dados do cliente:");
 
-                //    var pessoa = new Pessoa()
-                //    {
-                //        Cpf = Console.ReadLine(),
-                //        Idade = Convert.ToInt32(Console.ReadLine()),
-                //        Nome = Console.ReadLine()
-                //    };
+                    var cliente = new ClienteDto();
+                    {
+                        CNH = Console.ReadLine();
+                        Idade = Convert.ToInt32(Console.ReadLine());
+                        Nome = Console.ReadLine();
+                    };
 
-                //    Salvar(pessoa);
-                //}
+                    Salvar(cliente);
+                }
 
-                //if (opcao == 3)
-                //{
-                //    Console.WriteLine("Informe o nome da pessoa para remover:");
-                //    string nome = Console.ReadLine();
-                //    Remover(nome);
-                //}
+                if (opcao == 3)
+                {
+                    Console.WriteLine("Informe o nome da pessoa para remover:");
+                    string nome = Console.ReadLine();
+                    Remover(nome);
+                }
 
-                //if (opcao == 4)
-                //{
-                //    Console.WriteLine("Informe o nome da pessoa para atualizar:");
-                //    string nome = Console.ReadLine();
+                if (opcao == 4)
+                {
+                    Console.WriteLine("Informe o nome da pessoa para atualizar:");
+                    string nome = Console.ReadLine();
 
-                //    Console.WriteLine("Informe os novos dados da pessoa:");
+                    Console.WriteLine("Informe os novos dados da pessoa:");
 
-                //    var pessoa = new Pessoa()
-                //    {
-                //        Cpf = Console.ReadLine(),
-                //        Idade = Convert.ToInt32(Console.ReadLine()),
-                //        Nome = Console.ReadLine()
-                //    };
+                    var pessoa = new Pessoa()
+                    {
+                        Cpf = Console.ReadLine(),
+                        Idade = Convert.ToInt32(Console.ReadLine()),
+                        Nome = Console.ReadLine()
+                    };
 
-                //    Atualizar(nome, pessoa);
-                //}
+                    Atualizar(nome, pessoa);
+                }
 
-                //opcao = Convert.ToInt32(Console.ReadLine());
+                opcao = Convert.ToInt32(Console.ReadLine());
             }
         }
         public static List<PessoaDto> BuscarTodos()
@@ -171,5 +176,11 @@ namespace Client
             }
 
         }
-    }
+        }
+
+        //private static object BuscarTodos()
+        //{
+        //    throw new NotImplementedException();
+        //}
+    
 }

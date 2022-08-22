@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 
 namespace STFROTA.Models
 {
-    public class Veiculo
+    public class Aluguel
     {
-        public string Modelo { get; set; }
-        public string Placa { get; set; }
+        public DateTime DataInicio  { get; set; }
+        public DateTime DataFim { get; set; }
+        public string Cnh { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
     }
 }
+

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace STFROTA.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class Alugueis : ControllerBase
     {
+
     }
 }

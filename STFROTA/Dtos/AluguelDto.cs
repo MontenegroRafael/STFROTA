@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace STFROTA.Models
+namespace STFROTA.Dtos
 {
-    public class Cliente
+    public class AluguelDto
     {
-        public string Nome { get; set; }
+        public int Id { get; set; }
+        public DateTime DataInicio { get; set; }
+        public DateTime DataFim { get; set; }
         public string Cnh { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
     }
-        
 }

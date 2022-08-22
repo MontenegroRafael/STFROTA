@@ -3,16 +3,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using STFROTA.Dtos;
 
 namespace STFROTA.Repositories
 {
     public class ClienteAccessBanco
     {
-        
-        private readonly string _connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Cadastro;Integrated Security=True;";
-        
-        public void SalvarCliente(Cliente cliente)
+
+        //private readonly string _connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Cadastro;Integrated Security=True;";
+        private readonly string _connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Cadastro;Integrated Security=True;";
+
+        public bool SalvarCliente(Cliente cliente)
         {
+            int IdPessoaCriada = -1;
+            try
+            {
+                var query = @"INSERT INTO Cliente 
+                              (Nome, CNH, Data_Cadastro, Login_Cadastro) 
+                              OUTPUT Inserted.Id
+                              VALUES (@nome,@cpf,@data_Cadastro,@Login_Cadastro)";
+                using (var sql = new SqlConnection(_connection))
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+                    command.Parameters.AddWithValue("@nome", cliente.Nome);
+                    command.Parameters.AddWithValue("@CNH", cliente.Cnh);
+                    command.Parameters.AddWithValue("@data_Cadastro", cliente.DataCadastro);
+                    command.Parameters.AddWithValue("@data_Cadastro", cliente.LoginCadastro);
+                    command.Connection.Open();
+                    IdPessoaCriada = (int)command.ExecuteScalar();
+                }
+
+                Console.WriteLine("Pessoa cadastrada com sucesso.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+                return false;
+            }
 
         }
         //{
@@ -97,54 +126,33 @@ namespace STFROTA.Repositories
         //    }
         //}
 
-        //public List<PessoaDto> BuscarPorNome(string nome)
-        //{
-        //    List<PessoaDto> pessoasEncontradas;
-        //    try
-        //    {
-        //        var query = @"SELECT Id, Nome, Cpf, DataNascimento FROM Pessoa
-        //                              WHERE Nome like CONCAT('%',@nome,'%')";
+        public List<ClienteDto> BuscarPorNome(string nome)
+        {
+            List<ClienteDto> clientesEncontrados;
+            try
+            {
+                var query = @"SELECT Id, Nome, CNH, Data_Cadastro, Login_Cadastro FROM Cliente
+                                      WHERE Nome like CONCAT('%',@nome,'%')";
 
-        //        using (var connection = new SqlConnection(_connection))
-        //        {
-        //            var parametros = new
-        //            {
-        //                nome
-        //            };
-        //            pessoasEncontradas = connection.Query<PessoaDto>(query, parametros).ToList();
-        //        }
+                using (var connection = new SqlConnection(_connection))
+                {
+                    var parametros = new
+                    {
+                        nome
+                    };
+                    clientesEncontrados = connection.Query<ClienteDto>(query, parametros).ToList();
+                }
 
-        //        pessoasEncontradas.ForEach(e =>
-        //        {
-        //            e.Endereco = BuscarEnderecoPessoa(e.Id);
-        //            e.Telefones = BuscarTelefonesPessoa(e.Id);
-        //        });
+                return clientesEncontrados;
 
-        //        return pessoasEncontradas;
 
-        //        //maneira antiga
-        //        //using (var sql = new SqlConnection(_connection))
-        //        //{
-        //        //    SqlCommand command = new SqlCommand(query, sql);
-        //        //    command.Parameters.AddWithValue("@nome", nome);
-        //        //    command.Connection.Open();
-        //        //    resultado = command.ExecuteReader();
-
-        //        //    while (resultado.Read())
-        //        //    {
-        //        //        pessoas.Add(new Pessoa(resultado.GetInt32(resultado.GetOrdinal("Id")),
-        //        //                               resultado.GetString(resultado.GetOrdinal("Nome")),
-        //        //                               resultado.GetString(resultado.GetOrdinal("Cpf")),                                                                                              
-        //        //                               resultado.GetDateTime(resultado.GetOrdinal("DataNascimento"))));
-        //        //    }
-        //        //}
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Erro: " + ex.Message);
-        //        return null;
-        //    }
-        //}
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+                return null;
+            }
+        }
         //private EnderecoDto BuscarEnderecoPessoa(int idPessoa)
         //{
 
@@ -191,31 +199,26 @@ namespace STFROTA.Repositories
         //    }
 
         //}
-        //public List<PessoaDto> BuscarTodos()
-        //{
-        //    List<PessoaDto> pessoasEncontradas;
-        //    try
-        //    {
-        //        var query = @"SELECT Id, Nome, Cpf, DataNascimento FROM Pessoa";
+        public List<ClienteDto> BuscarTodos()
+        {
+            List<ClienteDto> clientesEncontrados;
+            try
+            {
+                var query = @"SELECT Id, Nome, CNH, Data_Cadastro, Login_Cadastro FROM Cliente";
 
-        //        using (var connection = new SqlConnection(_connection))
-        //        {
-        //            pessoasEncontradas = connection.Query<PessoaDto>(query).ToList();
-        //        }
+                using (var connection = new SqlConnection(_connection))
+                {
+                    clientesEncontrados = connection.Query<ClienteDto>(query).ToList();
+                }
 
-        //        pessoasEncontradas.ForEach(e =>
-        //        {
-        //            e.Endereco = BuscarEnderecoPessoa(e.Id);
-        //            e.Telefones = BuscarTelefonesPessoa(e.Id);
-        //        });
-
-        //        return pessoasEncontradas;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Erro: " + ex.Message);
-        //        return null;
-        //    }
+                return clientesEncontrados;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+                return null;
+            }
 
         }
+    }
 }
