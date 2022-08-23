@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Client;
+using Client.Models;
+using Client.Service;
+using Newtonsoft.Json;
 
 namespace Client
 {
@@ -11,176 +14,92 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Selecione uma opção");
+
+            //instanciar
+            ClienteService clienteService = new ClienteService();
+
+            Console.WriteLine("Digite a opção desejada");
+            Console.WriteLine("[1] - Mostrar Todos os Cliente");
+            Console.WriteLine("[2] - Cadastrar Cliente");
+            Console.WriteLine("[3] - Excluir Cliente");
+            Console.WriteLine("[4] - Atualizar Cliente");
+            Console.WriteLine("[0] - Sair");
             int opcao = Convert.ToInt32(Console.ReadLine());
 
             while (opcao != 0)
             {
                 if (opcao == 1)
                 {
-                    var resultado = BuscarTodos(); //mostra os dados na tela
-
+                    var resultado = clienteService.BuscarTodos();
+                    //mostra os dados na tela
                     foreach (var item in resultado)
                     {
                         Console.WriteLine("=====================================");
-                        Console.WriteLine("Id: " + item.);
                         Console.WriteLine("Nome: " + item.Nome);
-                        Console.WriteLine("CPF: " + item.Cpf);
-                        Console.WriteLine("Idade: " + item.Idade);
+                        Console.WriteLine("CNH: " + item.Cnh);
+                        Console.WriteLine("Data_Cadastro: " + item.DataCadastro);
+                        Console.WriteLine("Login_Cadastro: " + item.LoginCadastro);
                         Console.WriteLine("=====================================");
                     }
                 }
+
 
                 if (opcao == 2)
                 {
                     Console.WriteLine("Informe os dados do cliente:");
 
-                    var cliente = new ClienteDto();
+                    var cliente = new Cliente()
                     {
-                        CNH = Console.ReadLine();
-                        Idade = Convert.ToInt32(Console.ReadLine());
-                        Nome = Console.ReadLine();
+
+                        Nome = Console.ReadLine(),
+                        Cnh = Console.ReadLine(),
+                        DataCadastro = Convert.ToDateTime(Console.ReadLine()),
+                        LoginCadastro = Console.ReadLine()
                     };
 
-                    Salvar(cliente);
+                    clienteService.Salvar(cliente);
                 }
+
 
                 if (opcao == 3)
                 {
-                    Console.WriteLine("Informe o nome da pessoa para remover:");
+                    Console.WriteLine("Informe o nome do cliente para excluir:");
                     string nome = Console.ReadLine();
-                    Remover(nome);
+                    clienteService.Remover(nome);
                 }
+
 
                 if (opcao == 4)
                 {
-                    Console.WriteLine("Informe o nome da pessoa para atualizar:");
+                    Console.WriteLine("Informe o nome do cliente para atualizar:");
                     string nome = Console.ReadLine();
 
-                    Console.WriteLine("Informe os novos dados da pessoa:");
+                    Console.WriteLine("Informe os novos dados do cliente:");
 
-                    var pessoa = new Pessoa()
+                    var cliente = new Cliente()
                     {
-                        Cpf = Console.ReadLine(),
-                        Idade = Convert.ToInt32(Console.ReadLine()),
-                        Nome = Console.ReadLine()
+                        Nome = Console.ReadLine(),
+                        Cnh = Console.ReadLine(),
+                        DataCadastro = Convert.ToDateTime(Console.ReadLine()),
+                        LoginCadastro = Console.ReadLine()
                     };
 
-                    Atualizar(nome, pessoa);
+                    clienteService.Atualizar(nome, cliente);
                 }
 
+                if (opcao == 0)
+                {
+                    break;
+                }
+                Console.WriteLine("Digite a opção desejada");
+                Console.WriteLine("[1] - Mostrar Todos os Cliente");
+                Console.WriteLine("[2] - Cadastrar Cliente");
+                Console.WriteLine("[3] - Excluir Cliente");
+                Console.WriteLine("[4] - Atualizar Cliente");
+                Console.WriteLine("[0] - Sair");
                 opcao = Convert.ToInt32(Console.ReadLine());
             }
         }
-        public static List<PessoaDto> BuscarTodos()
-        {
-            HttpClient httpClient = new HttpClient();
-            HttpResponseMessage response;
+    }
 
-            //Busca todos os clientes dentro da api;
-            try
-            {
-                //monta a request para a api;
-                response = httpClient.GetAsync("https://localhost:44373/pessoas/buscartodos").Result;
-                response.EnsureSuccessStatusCode();
-
-                var resultado = response.Content.ReadAsStringAsync().Result;
-
-                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-                {
-                    Console.WriteLine(resultado);
-                    return new List<PessoaDto>();
-                }
-                //converte os dados recebidos e retorna eles como objetos do C#;
-                var objetoDesserializado = JsonConvert.DeserializeObject<List<PessoaDto>>(resultado);
-
-                return objetoDesserializado;
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new List<PessoaDto>();
-            }
-        }
-        public static void Salvar(Pessoa pessoa)
-        {
-            HttpClient httpClient = new HttpClient();
-            HttpResponseMessage response;
-
-            var json = JsonConvert.SerializeObject(pessoa);
-
-            try
-            {
-                //monta a request para a api;
-                response = httpClient.PostAsync("https://localhost:44373/pessoas/save", new StringContent(json, Encoding.UTF8, "application/json")).Result;
-                response.EnsureSuccessStatusCode();
-
-                var resultado = response.Content.ReadAsStringAsync().Result;
-
-                //converte os dados recebidos e retorna eles como objetos do C#;
-
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        public static void Remover(string nome)
-        {
-            HttpClient httpClient = new HttpClient();
-            HttpResponseMessage response;
-
-            try
-            {
-                //monta a request para a api;
-                response = httpClient.DeleteAsync($"https://localhost:44373/pessoas/remover?nome={nome}").Result;
-
-                var resultado = response.Content.ReadAsStringAsync().Result;
-
-                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-                {
-                    Console.WriteLine(resultado);
-                }
-                //converte os dados recebidos e retorna eles como objetos do C#;
-
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        public static void Atualizar(string nome, Pessoa pessoa)
-        {
-            HttpClient httpClient = new HttpClient();
-            HttpResponseMessage response;
-
-            try
-            {
-                var json = JsonConvert.SerializeObject(pessoa);
-                //monta a request para a api;
-                response = httpClient.PutAsync($"https://localhost:44373/pessoas/atualizarcomparametro?nome={nome}", new StringContent(json, Encoding.UTF8, "application/json")).Result;
-
-                var resultado = response.Content.ReadAsStringAsync().Result;
-
-                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-                {
-                    Console.WriteLine(resultado);
-                }
-
-                //converte os dados recebidos e retorna eles como objetos do C#;
-
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-        }
-        }
-
-        //private static object BuscarTodos()
-        //{
-        //    throw new NotImplementedException();
-        //}
-    
 }

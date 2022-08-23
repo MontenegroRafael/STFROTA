@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace STFROTA.Dtos
+namespace Client.Models
 {
-    public class ClienteDto
+    class Cliente
     {
-        public int Id_Cliente { get; set; }
         public string Nome { get; set; }
         public string Cnh { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
+
+        public Cliente()
+        {
+        }
     }
 }
+

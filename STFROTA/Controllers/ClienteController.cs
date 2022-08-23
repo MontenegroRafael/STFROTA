@@ -16,48 +16,69 @@ namespace STFROTA.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        private readonly ClienteAccessBanco _clienteRepository;
+        //private static readonly List<Cliente> clientes = new List<Cliente>();
 
-        public ClienteController()
-        {
-            _clienteRepository = new ClienteAccessBanco();
-        }
+        ClienteAccessBanco repositorioCliente = new ClienteAccessBanco();
+        private object clientes;
 
         [HttpPost]
-        public IActionResult Salvar(SalvarCliente salvarCliente)
+        public IActionResult Save(Cliente cliente)
         {
-            if (salvarCliente == null)
-                return Ok("Não foram informados dados");
+            if (cliente == null)
+                return NoContent();
 
-            if (salvarCliente.Cliente == null)
-                return Ok("Dados da pessoa não informados.");
+            repositorioCliente.SalvarCliente(cliente);
 
-            var resultado = _clienteRepository.SalvarCliente(salvarCliente.Cliente);
-
-            if (resultado) return Ok("Cliente cadastrado com sucesso.");
-
-            return Ok("Houve um problema ao salvar. Cliente não cadastrado.");
+            return Ok("Adicionado com sucesso!");
         }
-        [HttpPost]
-        public IActionResult BuscarPorNome(string nome)
-        {
-            var resultado = _clienteRepository.BuscarPorNome(nome);
-
-            if (resultado == null || !resultado.Any())
-                return NotFound("Nenhum registro encontrado com o nome informado.");
-
-            return Ok(resultado);
-        }
-
         [HttpGet]
         public IActionResult BuscarTodos()
         {
-            var resultado = _clienteRepository.BuscarTodos();
+            var clientes = repositorioCliente.BuscarTodos();
 
-            if (resultado == null)
+            if (clientes == null || !clientes.Any())
+                return NotFound(new { mensage = $"Lista vazia." });
+
+            return Ok(clientes);
+
+        }
+        [HttpPut]
+        public IActionResult Atualizar(AtualizarClienteModel model)
+        {
+            if (model == null)
+                return NoContent();
+            if (model.Atualizar == null)
+                return NoContent();
+            if (model.Encontrar == null)
+                return NoContent();
+
+            var cEncontrado = clientes.FirstOrDefault(x => x.Nome == model.Encontrar.Nome);
+
+            if (cEncontrado == null)
+                return NotFound("Não há nenhum registro com esse nome.");
+
+            cEncontrado.Nome = model.Atualizar.Nome;
+            cEncontrado.Cnh = model.Atualizar.Cnh;
+            cEncontrado.DataCadastro = model.Atualizar.DataCadastro;
+            cEncontrado.LoginCadastro = model.Atualizar.LoginCadastro;
+
+
+            return Ok(cEncontrado);
+        }
+
+        [HttpDelete]
+        public IActionResult Remover(string nome)
+        {
+            if (string.IsNullOrEmpty(nome))
+                return NoContent();
+
+            var cliente = clientes.FirstOrDefault(x => x.Nome.Contains(nome));
+
+            if (cliente == null)
                 return NotFound();
 
-            return Ok(resultado);
+            clientes.Remove(cliente);
+            return Ok("Removido com sucesso!");
         }
     }
 }

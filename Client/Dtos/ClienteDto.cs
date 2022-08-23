@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace STFROTA.Dtos
+namespace Client.Dtos
 {
-    public class ClienteDto
+    class ClienteDto
     {
         public int Id_Cliente { get; set; }
         public string Nome { get; set; }
