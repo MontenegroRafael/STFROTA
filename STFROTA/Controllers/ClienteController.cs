@@ -19,7 +19,7 @@ namespace STFROTA.Controllers
         //private static readonly List<Cliente> clientes = new List<Cliente>();
 
         ClienteAccessBanco repositorioCliente = new ClienteAccessBanco();
-        private object clientes;
+        private object _clientes;
 
         [HttpPost]
         public IActionResult Save(Cliente cliente)
@@ -52,7 +52,7 @@ namespace STFROTA.Controllers
             if (model.Encontrar == null)
                 return NoContent();
 
-            var cEncontrado = clientes.FirstOrDefault(x => x.Nome == model.Encontrar.Nome);
+            var cEncontrado = _clientes.FirstOrDefault(x => x.Nome == model.Encontrar.Nome);
 
             if (cEncontrado == null)
                 return NotFound("Não há nenhum registro com esse nome.");
@@ -72,12 +72,12 @@ namespace STFROTA.Controllers
             if (string.IsNullOrEmpty(nome))
                 return NoContent();
 
-            var cliente = clientes.FirstOrDefault(x => x.Nome.Contains(nome));
+            var cliente = _clientes.FirstOrDefault(x => x.Nome.Contains(nome));
 
             if (cliente == null)
                 return NotFound();
 
-            clientes.Remove(cliente);
+            _clientes.Remove(cliente);
             return Ok("Removido com sucesso!");
         }
     }
