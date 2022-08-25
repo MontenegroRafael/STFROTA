@@ -13,7 +13,7 @@ namespace STFROTA.Repositories
     {
 
         //private readonly string _connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Cadastro;Integrated Security=True;";
-        private readonly string _connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=FrotaTeste;Integrated Security=True;";
+        private readonly string _connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
 
         public bool SalvarCliente(Cliente cliente)
         {
@@ -21,7 +21,7 @@ namespace STFROTA.Repositories
             try
             {
                 var query = @"INSERT INTO Clientes 
-                              (Nome, CNH, DataCadastro, LoginCadastro)
+                              (Nome, CNH, Data_Cadastro, Login_Cadastro)
                               VALUES (@nome,@CNH,@data_Cadastro,@login_Cadastro)";
 
                 using (var sql = new SqlConnection(_connection))
@@ -51,7 +51,7 @@ namespace STFROTA.Repositories
             List<ClienteDto> clientesEncontrados;
             try
             {
-                var query = @"SELECT Id_Cliente, Nome, CNH, Data_Cadastro, Login_Cadastro, Telefone FROM Clientes";
+                var query = @"SELECT Id_Cliente, Nome, CNH, Data_Cadastro, Login_Cadastro FROM Clientes";
 
                 using (var connection = new SqlConnection(_connection))
                 {
@@ -66,6 +66,7 @@ namespace STFROTA.Repositories
             catch (Exception ex)
             {
                 Console.WriteLine("Erro: " + ex.Message);
+                
                 return null;
             }
         }
