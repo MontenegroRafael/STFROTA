@@ -21,7 +21,7 @@ namespace STFROTA.Repositories
             try
             {
                 var query = @"INSERT INTO Clientes 
-                              (Nome, CNH, Data_Cadastro, Login_Cadastro)
+                              (Nome, CNH, DataCadastro, LoginCadastro)
                               VALUES (@nome,@CNH,@data_Cadastro,@login_Cadastro)";
 
                 using (var sql = new SqlConnection(_connection))
@@ -51,7 +51,7 @@ namespace STFROTA.Repositories
             List<ClienteDto> clientesEncontrados;
             try
             {
-                var query = @"SELECT Id_Cliente, Nome, CNH, Data_Cadastro, Login_Cadastro FROM Clientes";
+                var query = @"SELECT IdCliente, Nome, CNH, DataCadastro, LoginCadastro FROM Clientes";
 
                 using (var connection = new SqlConnection(_connection))
                 {
@@ -77,7 +77,7 @@ namespace STFROTA.Repositories
             ClienteDto clientesEncontrados;
             try
             {
-                var query = @"SELECT Id_Cliente, Nome, CNH, Data_Cadastro, Login_Cadastro FROM Clientes
+                var query = @"SELECT IdCliente, Nome, CNH, DataCadastro, LoginCadastro FROM Clientes
                                       WHERE Nome like CONCAT('%',@nome,'%')";
 
                 using (var connection = new SqlConnection(_connection))
@@ -104,7 +104,7 @@ namespace STFROTA.Repositories
             int IdClienteCriado = -1;
             try
             {
-                var query = @"UPDATE Cliente SET Nome = @nome, CNH = @cnh, Data_Cadastro = @data_Cadastro, Login_Cadastro = @login_Cadastro WHERE Id_Cliente =@id_Cliente";
+                var query = @"UPDATE Cliente SET Nome = @nome, CNH = @cnh, DataCadastro = @data_Cadastro, LoginCadastro = @login_Cadastro WHERE Id_Cliente =@id_Cliente";
 
 
 

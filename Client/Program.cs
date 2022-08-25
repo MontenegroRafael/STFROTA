@@ -26,7 +26,7 @@ namespace Client
             Console.WriteLine("[0] - Sair");
             int opcao = Convert.ToInt32(Console.ReadLine());
 
-            while (opcao != 0)
+            while (true)
             {
                 if (opcao == 1)
                 {
@@ -35,6 +35,7 @@ namespace Client
                     foreach (var item in resultado)
                     {
                         Console.WriteLine("=====================================");
+                        Console.WriteLine("Id: " + item.IdCliente);
                         Console.WriteLine("Nome: " + item.Nome);
                         Console.WriteLine("CNH: " + item.Cnh);
                         Console.WriteLine("Data_Cadastro: " + item.DataCadastro);
@@ -42,7 +43,6 @@ namespace Client
                         Console.WriteLine("=====================================");
                     }
                 }
-
 
                 else if (opcao == 2)
                 {
@@ -60,14 +60,12 @@ namespace Client
                     clienteService.Salvar(cliente);
                 }
 
-
                 else if (opcao == 3)
                 {
                     Console.WriteLine("Informe o nome do cliente para excluir:");
                     string nome = Console.ReadLine();
                     clienteService.Remover(nome);
                 }
-
 
                 else if (opcao == 4)
                 {
