@@ -44,24 +44,24 @@ namespace Client
                 }
 
 
-                if (opcao == 2)
+                else if (opcao == 2)
                 {
-                    Console.WriteLine("Informe os dados do cliente:");
-
-                    var cliente = new Cliente()
-                    {
-
-                        Nome = Console.ReadLine(),
-                        Cnh = Console.ReadLine(),
-                        DataCadastro = Convert.ToDateTime(Console.ReadLine()),
-                        LoginCadastro = Console.ReadLine()
-                    };
+                    Console.WriteLine("Informe os dados do Cliente:");
+                    Console.WriteLine("Nome:");
+                    string Nome = Console.ReadLine();
+                    Console.WriteLine("CNH: ");
+                    string Cnh = Console.ReadLine();
+                    Console.WriteLine("Data de Cadastro:");
+                    DateTime DataCadastro = Convert.ToDateTime(Console.ReadLine());
+                    Console.WriteLine("Login de Cadastro:");
+                    string LoginCadastro = Console.ReadLine();
+                    Cliente cliente = new Cliente(Nome, Cnh, DataCadastro, LoginCadastro);
 
                     clienteService.Salvar(cliente);
                 }
 
 
-                if (opcao == 3)
+                else if (opcao == 3)
                 {
                     Console.WriteLine("Informe o nome do cliente para excluir:");
                     string nome = Console.ReadLine();
@@ -69,7 +69,7 @@ namespace Client
                 }
 
 
-                if (opcao == 4)
+                else if (opcao == 4)
                 {
                     Console.WriteLine("Informe o nome do cliente para atualizar:");
                     string nome = Console.ReadLine();
@@ -87,9 +87,13 @@ namespace Client
                     clienteService.Atualizar(nome, cliente);
                 }
 
-                if (opcao == 0)
+                else if (opcao == 0)
                 {
                     break;
+                }
+                else
+                {
+                    Console.WriteLine("**** Opção Invalida! - DIGITE UMA OPÇÃO VALIDA - ");
                 }
                 Console.WriteLine("Digite a opção desejada");
                 Console.WriteLine("[1] - Mostrar Todos os Cliente");
@@ -99,6 +103,7 @@ namespace Client
                 Console.WriteLine("[0] - Sair");
                 opcao = Convert.ToInt32(Console.ReadLine());
             }
+        
         }
     }
 

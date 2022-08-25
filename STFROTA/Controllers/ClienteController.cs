@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using STFROTA.Models;
 using STFROTA.Repositories;
 using STFROTA.ViewModels;
+using Dapper;
 
 
 namespace STFROTA.Controllers
@@ -52,7 +53,7 @@ namespace STFROTA.Controllers
             if (model.Encontrar == null)
                 return NoContent();
 
-            var cEncontrado = _clientes.FirstOrDefault(x => x.Nome == model.Encontrar.Nome);
+            var cEncontrado = repositorioCliente.BuscarPorNome(model.Encontrar.Nome);
 
             if (cEncontrado == null)
                 return NotFound("Não há nenhum registro com esse nome.");
@@ -66,19 +67,19 @@ namespace STFROTA.Controllers
             return Ok(cEncontrado);
         }
 
-        [HttpDelete]
-        public IActionResult Remover(string nome)
-        {
-            if (string.IsNullOrEmpty(nome))
-                return NoContent();
+        //[HttpDelete]
+        //public IActionResult Remover(string nome)
+        //{
+        //    if (string.IsNullOrEmpty(nome))
+        //        return NoContent();
 
-            var cliente = _clientes.FirstOrDefault(x => x.Nome.Contains(nome));
+        //    var cliente = repositorioCliente.FirstOrDefault(x => x.Nome.Contains(nome));
 
-            if (cliente == null)
-                return NotFound();
+        //    if (cliente == null)
+        //        return NotFound();
 
-            _clientes.Remove(cliente);
-            return Ok("Removido com sucesso!");
-        }
+        //    clientes.Remove(cliente);
+        //    return Ok("Removido com sucesso!");
+        //}
     }
 }
