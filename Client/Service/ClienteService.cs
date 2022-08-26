@@ -92,16 +92,22 @@ namespace Client.Service
         }
 
 
-        public void Atualizar(string nome, Cliente cliente)
+        public void Atualizar(int idCliente, Cliente cliente)
         {
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage response;
 
+            var viewModel = new 
+            {
+                IdEncontrar = idCliente,
+                Atualizar = cliente
+            };
+
             try
             {
-                var json = JsonConvert.SerializeObject(cliente);
+                var json = JsonConvert.SerializeObject(viewModel);
                 //monta a request para a api;
-                response = httpClient.PutAsync($"https://localhost:44335/cliente/atualizarcomparametro?nome={nome}", new StringContent(json, Encoding.UTF8, "application/json")).Result;
+                response = httpClient.PutAsync($"https://localhost:44335/cliente/atualizar", new StringContent(json, Encoding.UTF8, "application/json")).Result;
 
                 var resultado = response.Content.ReadAsStringAsync().Result;
 

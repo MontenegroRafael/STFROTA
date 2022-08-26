@@ -19,7 +19,7 @@ namespace Client
             ClienteService clienteService = new ClienteService();
 
             Console.WriteLine("Digite a opção desejada");
-            Console.WriteLine("[1] - Mostrar Todos os Cliente");
+            Console.WriteLine("[1] - Mostrar Lista de Cliente");
             Console.WriteLine("[2] - Cadastrar Cliente");
             Console.WriteLine("[3] - Excluir Cliente");
             Console.WriteLine("[4] - Atualizar Cliente");
@@ -28,7 +28,8 @@ namespace Client
 
             while (true)
             {
-                if (opcao == 1)
+                // MOSTRAR LISTA DE CLIENTES
+                if (opcao == 1) 
                 {
                     var resultado = clienteService.BuscarTodos();
                     //mostra os dados na tela
@@ -43,8 +44,8 @@ namespace Client
                         Console.WriteLine("=====================================");
                     }
                 }
-
-                else if (opcao == 2)
+                // CADASTRAR CLIENTE
+                else if (opcao == 2) 
                 {
                     Console.WriteLine("Informe os dados do Cliente:");
                     Console.WriteLine("Nome:");
@@ -59,30 +60,32 @@ namespace Client
 
                     clienteService.Salvar(cliente);
                 }
-
+                // EXCLUIR CLIENTE POR NOME
                 else if (opcao == 3)
                 {
-                    Console.WriteLine("Informe o nome do cliente para excluir:");
+                    Console.Write("Informe o nome do cliente para excluir: ");
                     string nome = Console.ReadLine();
                     clienteService.Remover(nome);
                 }
 
                 else if (opcao == 4)
                 {
-                    Console.WriteLine("Informe o nome do cliente para atualizar:");
-                    string nome = Console.ReadLine();
+                    Console.Write("Informe o Id do cliente para atualizar: ");
+                    int idCliente = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("Informe os novos dados do cliente:");
+                    Console.WriteLine("Informe os dados do Cliente:");
+                    Console.WriteLine("Nome:");
+                    string Nome = Console.ReadLine();
+                    Console.WriteLine("CNH: ");
+                    string Cnh = Console.ReadLine();
+                    Console.WriteLine("Data de Cadastro:");
+                    DateTime DataAtualizacao = Convert.ToDateTime(Console.ReadLine());
+                    Console.WriteLine("Login de Cadastro:");
+                    string LoginCadastro = Console.ReadLine();
 
-                    var cliente = new Cliente()
-                    {
-                        Nome = Console.ReadLine(),
-                        Cnh = Console.ReadLine(),
-                        DataCadastro = Convert.ToDateTime(Console.ReadLine()),
-                        LoginCadastro = Console.ReadLine()
-                    };
+                    Cliente cliente = new Cliente(Nome, Cnh, DataAtualizacao, LoginCadastro);
 
-                    clienteService.Atualizar(nome, cliente);
+                    clienteService.Atualizar(idCliente, cliente);
                 }
 
                 else if (opcao == 0)
@@ -94,7 +97,7 @@ namespace Client
                     Console.WriteLine("**** Opção Invalida! - DIGITE UMA OPÇÃO VALIDA - ");
                 }
                 Console.WriteLine("Digite a opção desejada");
-                Console.WriteLine("[1] - Mostrar Todos os Cliente");
+                Console.WriteLine("[1] - Mostrar Lista de Cliente");
                 Console.WriteLine("[2] - Cadastrar Cliente");
                 Console.WriteLine("[3] - Excluir Cliente");
                 Console.WriteLine("[4] - Atualizar Cliente");

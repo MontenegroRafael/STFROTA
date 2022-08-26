@@ -11,6 +11,7 @@ namespace Client.Models
         public string Cnh { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
+        public DateTime DataAtualizacao { get; set; }
 
         public Cliente()
         {
@@ -22,6 +23,7 @@ namespace Client.Models
             Cnh = cnh;
             DataCadastro = dataCadastro;
             LoginCadastro = loginCadastro;
+            DataAtualizacao = DateTime.Now;
         }
     }
 }

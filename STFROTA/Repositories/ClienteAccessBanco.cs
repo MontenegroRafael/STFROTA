@@ -46,6 +46,7 @@ namespace STFROTA.Repositories
             }
 
         }
+
         public List<ClienteDto> BuscarTodos()
         {
             List<ClienteDto> clientesEncontrados;
@@ -70,7 +71,6 @@ namespace STFROTA.Repositories
                 return null;
             }
         }
-        
 
         public ClienteDto BuscarPorNome(string nome)
         {
@@ -99,12 +99,13 @@ namespace STFROTA.Repositories
             }
 
         }
-        public bool Atualizar(Cliente cliente)
+
+        public bool Atualizar(int idCliente, Cliente cliente)
         {
-            int IdClienteCriado = -1;
+            
             try
             {
-                var query = @"UPDATE Cliente SET Nome = @nome, CNH = @cnh, DataCadastro = @data_Cadastro, LoginCadastro = @login_Cadastro WHERE Id_Cliente =@id_Cliente";
+                var query = @"UPDATE Clientes SET Nome = @nome, CNH = @cnh, DataAtualizacao = @dataAtualizacao, LoginCadastro = @loginCadastro WHERE IdCliente = @idCliente";
 
 
 
@@ -114,10 +115,11 @@ namespace STFROTA.Repositories
                     SqlCommand command = new SqlCommand(query, sql);
                     command.Parameters.AddWithValue("@nome", cliente.Nome);
                     command.Parameters.AddWithValue("@cnh", cliente.Cnh);
-                    command.Parameters.AddWithValue("@data_Cadastro", cliente.DataCadastro);
-                    command.Parameters.AddWithValue("@login_Cadastro", cliente.LoginCadastro);
+                    command.Parameters.AddWithValue("@dataAtualizacao", cliente.DataAtualizacao);
+                    command.Parameters.AddWithValue("@loginCadastro", cliente.LoginCadastro);
+                    command.Parameters.AddWithValue("@idCliente", idCliente);
                     command.Connection.Open();
-                    IdClienteCriado = (int)command.ExecuteScalar();
+                    command.ExecuteNonQuery();
                 }
 
 
@@ -129,6 +131,33 @@ namespace STFROTA.Repositories
                 Console.WriteLine("Erro: " + ex.Message);
                 return false;
             }
+        }
+        public ClienteDto DeletarPorNome(string nome)
+        {
+            ClienteDto clientesEncontrados;
+            try
+            {
+                var query = @"DELETE FROM Clientes 
+                                        WHERE Nome like CONCAT('%', @nome, '%')";
+                
+                using (var connection = new SqlConnection(_connection))
+                {
+                    var parametros = new
+                    {
+                        nome
+                    };
+                    clientesEncontrados = connection.QueryFirstOrDefault<ClienteDto>(query, parametros);
+                }
+
+                return clientesEncontrados;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+                return null;
+            }
+
         }
 
     }

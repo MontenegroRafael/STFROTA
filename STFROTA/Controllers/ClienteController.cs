@@ -46,39 +46,39 @@ namespace STFROTA.Controllers
         [HttpPut]
         public IActionResult Atualizar(AtualizarClienteModel model)
         {
-            if (model == null)
-                return NoContent();
-            if (model.Atualizar == null)
-                return NoContent();
-            if (model.Encontrar == null)
-                return NoContent();
+            //if (model == null)
+            //    return NoContent();
+            //if (model.Atualizar == null)
+            //    return NoContent();
+            //if (model.Encontrar == null)
+            //    return NoContent();
 
-            var cEncontrado = repositorioCliente.BuscarPorNome(model.Encontrar.Nome);
+            var cEncontrado = repositorioCliente.Atualizar(model.IdEncontrar, model.Atualizar);
 
-            if (cEncontrado == null)
-                return NotFound("Não há nenhum registro com esse nome.");
+            //if (cEncontrado == null)
+            //    return NotFound("Não há nenhum registro com esse nome.");
 
-            cEncontrado.Nome = model.Atualizar.Nome;
-            cEncontrado.Cnh = model.Atualizar.Cnh;
-            cEncontrado.DataCadastro = model.Atualizar.DataCadastro;
-            cEncontrado.LoginCadastro = model.Atualizar.LoginCadastro;
+            //cEncontrado.Nome = model.Atualizar.Nome;
+            //cEncontrado.Cnh = model.Atualizar.Cnh;
+            //cEncontrado.DataCadastro = model.Atualizar.DataCadastro;
+            //cEncontrado.LoginCadastro = model.Atualizar.LoginCadastro;
 
 
             return Ok(cEncontrado);
         }
 
         //[HttpDelete]
-        //public IActionResult Remover(string nome)
+        //public IActionResult Remover(DeletarClienteModel model)
         //{
-        //    if (string.IsNullOrEmpty(nome))
+        //    if (model.IsNullOrEmpty(nome))
         //        return NoContent();
 
-        //    var cliente = repositorioCliente.FirstOrDefault(x => x.Nome.Contains(nome));
+        //    var cliente = repositorioCliente.DeletarPorNome(nome);
 
         //    if (cliente == null)
         //        return NotFound();
 
-        //    clientes.Remove(cliente);
+        //    clientes.Remover(cliente);
         //    return Ok("Removido com sucesso!");
         //}
     }

@@ -12,6 +12,7 @@ namespace STFROTA.Models
         public string Cnh { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
+        public DateTime DataAtualizacao { get; set; }
     }
         
 }

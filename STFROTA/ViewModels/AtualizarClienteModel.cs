@@ -8,7 +8,7 @@ namespace STFROTA.Models
 {
     public class AtualizarClienteModel
     {
-        public Cliente Encontrar { get; set; }
+        public int IdEncontrar { get; set; }
         public Cliente Atualizar { get; set; }
     }
 }
