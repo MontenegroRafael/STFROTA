@@ -16,10 +16,9 @@ namespace STFROTA.Models
         public string LoginCadastro { get; set; }
         public DateTime DataAtualizacao { get; set; }
 
-        public Cliente(int idCliente, string nome)
+        public Cliente()
         {
-            IdCliente = idCliente;
-            Nome = nome;
+            
         }
     }
 }
