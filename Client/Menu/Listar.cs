@@ -28,10 +28,12 @@ namespace Client.Menu
         }
         public static void ClienteMostrarIdNome()
         {
-            string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
-            List<Cliente> listarClientes = new List<Cliente>();
+            
             try
             {
+                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                List<Cliente> listarClientes = new List<Cliente>();
+
                 SqlDataReader resultado;
                 var query = "SELECT IdCliente, Nome FROM Clientes ";
 

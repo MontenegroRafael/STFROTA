@@ -133,7 +133,7 @@ namespace STFROTA.Repositories
             try
             {
                 var query = @"DELETE FROM Clientes 
-                                        WHERE IdCliente";
+                                        WHERE IdCliente = @idCliente";
                 
                 using (var sql = new SqlConnection(_connection))
                 {
