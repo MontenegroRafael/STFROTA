@@ -25,6 +25,12 @@ namespace Client.Models
             LoginCadastro = loginCadastro;
             DataAtualizacao = DateTime.Now;
         }
+
+        public Cliente(int idCliente, string nome)
+        {
+            IdCliente = idCliente;
+            Nome = nome;
+        }
     }
 }
 

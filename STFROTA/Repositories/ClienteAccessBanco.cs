@@ -102,12 +102,10 @@ namespace STFROTA.Repositories
 
         public bool Atualizar(int idCliente, Cliente cliente)
         {
-            
             try
             {
-                var query = @"UPDATE Clientes SET Nome = @nome, CNH = @cnh, DataAtualizacao = @dataAtualizacao, LoginCadastro = @loginCadastro WHERE IdCliente = @idCliente";
-
-
+                var query = @"UPDATE Clientes SET Nome = @nome, CNH = @cnh, DataAtualizacao = @dataAtualizacao, LoginCadastro = @loginCadastro 
+                                WHERE IdCliente = @idCliente";
 
                 using (var sql = new SqlConnection(_connection))
 
@@ -121,9 +119,7 @@ namespace STFROTA.Repositories
                     command.Connection.Open();
                     command.ExecuteNonQuery();
                 }
-
-
-                Console.WriteLine("Cliente atualizado com sucesso.");
+                
                 return true;
             }
             catch (Exception ex)
@@ -132,30 +128,29 @@ namespace STFROTA.Repositories
                 return false;
             }
         }
-        public ClienteDto DeletarPorNome(string nome)
+        public bool Remover(int idCliente)
         {
-            ClienteDto clientesEncontrados;
             try
             {
                 var query = @"DELETE FROM Clientes 
-                                        WHERE Nome like CONCAT('%', @nome, '%')";
+                                        WHERE IdCliente";
                 
-                using (var connection = new SqlConnection(_connection))
+                using (var sql = new SqlConnection(_connection))
                 {
-                    var parametros = new
-                    {
-                        nome
-                    };
-                    clientesEncontrados = connection.QueryFirstOrDefault<ClienteDto>(query, parametros);
+                    SqlCommand command = new SqlCommand(query, sql);
+                    
+                    command.Parameters.AddWithValue("@idCliente", idCliente);
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
                 }
 
-                return clientesEncontrados;
+                return true;
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Erro: " + ex.Message);
-                return null;
+                return false;
             }
 
         }

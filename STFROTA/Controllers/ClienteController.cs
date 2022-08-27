@@ -22,7 +22,8 @@ namespace STFROTA.Controllers
         ClienteAccessBanco repositorioCliente = new ClienteAccessBanco();
         private object _clientes;
 
-        [HttpPost]
+        
+        [HttpPost]  // CADASTRAR CLIENTE
         public IActionResult Save(Cliente cliente)
         {
             if (cliente == null)
@@ -32,7 +33,8 @@ namespace STFROTA.Controllers
 
             return Ok("Adicionado com sucesso!");
         }
-        [HttpGet]
+
+        [HttpGet]  // MOSTRAR LISTA DE CLIENTES
         public IActionResult BuscarTodos()
         {
             var clientes = repositorioCliente.BuscarTodos();
@@ -43,43 +45,20 @@ namespace STFROTA.Controllers
             return Ok(clientes);
 
         }
-        [HttpPut]
-        public IActionResult Atualizar(AtualizarClienteModel model)
+
+        [HttpPut]  // ATUALIZAR CLIENTE POR ID
+        public IActionResult Atualizar(AtualizarClienteModel cliente)
         {
-            //if (model == null)
-            //    return NoContent();
-            //if (model.Atualizar == null)
-            //    return NoContent();
-            //if (model.Encontrar == null)
-            //    return NoContent();
-
-            var cEncontrado = repositorioCliente.Atualizar(model.IdEncontrar, model.Atualizar);
-
-            //if (cEncontrado == null)
-            //    return NotFound("Não há nenhum registro com esse nome.");
-
-            //cEncontrado.Nome = model.Atualizar.Nome;
-            //cEncontrado.Cnh = model.Atualizar.Cnh;
-            //cEncontrado.DataCadastro = model.Atualizar.DataCadastro;
-            //cEncontrado.LoginCadastro = model.Atualizar.LoginCadastro;
-
-
+            var cEncontrado = repositorioCliente.Atualizar(cliente.IdEncontrar, cliente.Atualizar);
             return Ok(cEncontrado);
         }
 
-        //[HttpDelete]
-        //public IActionResult Remover(DeletarClienteModel model)
-        //{
-        //    if (model.IsNullOrEmpty(nome))
-        //        return NoContent();
+        [HttpDelete]  // DELETAR CLIENTE POR ID
+        public IActionResult Remover(DeletarClienteModel cliente)
+        {
+            var cEncontrado = repositorioCliente.Remover(cliente.IdEncontrar);
 
-        //    var cliente = repositorioCliente.DeletarPorNome(nome);
-
-        //    if (cliente == null)
-        //        return NotFound();
-
-        //    clientes.Remover(cliente);
-        //    return Ok("Removido com sucesso!");
-        //}
+            return Ok(cEncontrado);
+        }
     }
 }

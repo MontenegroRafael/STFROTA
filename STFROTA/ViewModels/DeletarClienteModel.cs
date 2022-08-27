@@ -8,7 +8,7 @@ namespace STFROTA.ViewModels
 {
     public class DeletarClienteModel
     {
-        public Cliente Encontrar { get; set; }
+        public int IdEncontrar { get; set; }
         public Cliente Deletar { get; set; }
     }
 }

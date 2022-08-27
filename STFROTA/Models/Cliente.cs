@@ -7,12 +7,19 @@ namespace STFROTA.Models
 {
     public class Cliente
     {
+        
+
         public int IdCliente { get; set; }
         public string Nome { get; set; }
         public string Cnh { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
         public DateTime DataAtualizacao { get; set; }
+
+        public Cliente(int idCliente, string nome)
+        {
+            IdCliente = idCliente;
+            Nome = nome;
+        }
     }
-        
 }

@@ -3,27 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Client;
 using Client.Models;
 using Client.Service;
 using Newtonsoft.Json;
+using Client.Menu;
 
 namespace Client
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-
-            //instanciar
+            // INSTANCIAR
             ClienteService clienteService = new ClienteService();
 
-            Console.WriteLine("Digite a opção desejada");
-            Console.WriteLine("[1] - Mostrar Lista de Cliente");
-            Console.WriteLine("[2] - Cadastrar Cliente");
-            Console.WriteLine("[3] - Excluir Cliente");
-            Console.WriteLine("[4] - Atualizar Cliente");
-            Console.WriteLine("[0] - Sair");
+            Listar.MostarMenu();
+            Console.Write("Qual Opção Deseja? ");
             int opcao = Convert.ToInt32(Console.ReadLine());
 
             while (true)
@@ -60,32 +55,41 @@ namespace Client
 
                     clienteService.Salvar(cliente);
                 }
-                // EXCLUIR CLIENTE POR NOME
+                // EXCLUIR CLIENTE POR ID
                 else if (opcao == 3)
                 {
-                    Console.Write("Informe o nome do cliente para excluir: ");
-                    string nome = Console.ReadLine();
-                    clienteService.Remover(nome);
-                }
+                    Listar.ClienteMostrarIdNome();
+                    Console.Write("Informe o ID do cliente para excluir: ");
+                    int id = Convert.ToInt32(Console.ReadLine());
 
+                    clienteService.Remover(id);
+                }
+                // ATUALIZAR CLIENTE POR ID
                 else if (opcao == 4)
                 {
+                    Listar.ClienteMostrarIdNome();
                     Console.Write("Informe o Id do cliente para atualizar: ");
                     int idCliente = Convert.ToInt32(Console.ReadLine());
-
+                    
+                    Console.WriteLine("=====================================");
                     Console.WriteLine("Informe os dados do Cliente:");
+
                     Console.WriteLine("Nome:");
                     string Nome = Console.ReadLine();
                     Console.WriteLine("CNH: ");
                     string Cnh = Console.ReadLine();
-                    Console.WriteLine("Data de Cadastro:");
+                    Console.WriteLine("Data de Atualização:");
                     DateTime DataAtualizacao = Convert.ToDateTime(Console.ReadLine());
                     Console.WriteLine("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
+                    Console.WriteLine("=====================================");
 
                     Cliente cliente = new Cliente(Nome, Cnh, DataAtualizacao, LoginCadastro);
 
                     clienteService.Atualizar(idCliente, cliente);
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Cliente atualizado com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
                 else if (opcao == 0)
@@ -96,12 +100,8 @@ namespace Client
                 {
                     Console.WriteLine("**** Opção Invalida! - DIGITE UMA OPÇÃO VALIDA - ");
                 }
-                Console.WriteLine("Digite a opção desejada");
-                Console.WriteLine("[1] - Mostrar Lista de Cliente");
-                Console.WriteLine("[2] - Cadastrar Cliente");
-                Console.WriteLine("[3] - Excluir Cliente");
-                Console.WriteLine("[4] - Atualizar Cliente");
-                Console.WriteLine("[0] - Sair");
+                Listar.MostarMenu();
+                Console.Write("Qual Opção Deseja? ");
                 opcao = Convert.ToInt32(Console.ReadLine());
             }
         
