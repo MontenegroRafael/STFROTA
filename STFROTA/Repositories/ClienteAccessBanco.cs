@@ -113,8 +113,8 @@ namespace STFROTA.Repositories
                     SqlCommand command = new SqlCommand(query, sql);
                     command.Parameters.AddWithValue("@nome", cliente.Nome);
                     command.Parameters.AddWithValue("@cnh", cliente.Cnh);
-                    command.Parameters.AddWithValue("@dataAtualizacao", cliente.DataAtualizacao);
                     command.Parameters.AddWithValue("@loginCadastro", cliente.LoginCadastro);
+                    command.Parameters.AddWithValue("@dataAtualizacao", cliente.DataAtualizacao);
                     command.Parameters.AddWithValue("@idCliente", idCliente);
                     command.Connection.Open();
                     command.ExecuteNonQuery();

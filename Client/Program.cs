@@ -78,13 +78,11 @@ namespace Client
                     string Nome = Console.ReadLine();
                     Console.WriteLine("CNH: ");
                     string Cnh = Console.ReadLine();
-                    Console.WriteLine("Data de Atualização:");
-                    DateTime DataAtualizacao = Convert.ToDateTime(Console.ReadLine());
                     Console.WriteLine("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
                     Console.WriteLine("=====================================");
 
-                    Cliente cliente = new Cliente(Nome, Cnh, DataAtualizacao, LoginCadastro);
+                    Cliente cliente = new Cliente(Nome, Cnh, LoginCadastro);
 
                     clienteService.Atualizar(idCliente, cliente);
                     Console.WriteLine("=====================================");
