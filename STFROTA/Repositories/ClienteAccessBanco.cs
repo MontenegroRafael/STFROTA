@@ -128,29 +128,25 @@ namespace STFROTA.Repositories
                 return false;
             }
         }
-        public bool Remover(int idCliente)
+        public void Remover(ClienteDto nome)
         {
             try
             {
-                var query = @"DELETE FROM Clientes 
-                                        WHERE IdCliente = @idCliente";
+                var query = @"DELETE FROM Clientes WHERE Nome = @nome";
                 
                 using (var sql = new SqlConnection(_connection))
                 {
                     SqlCommand command = new SqlCommand(query, sql);
                     
-                    command.Parameters.AddWithValue("@idCliente", idCliente);
+                    command.Parameters.AddWithValue("@nome", nome.Nome);
                     command.Connection.Open();
                     command.ExecuteNonQuery();
                 }
-
-                return true;
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Erro: " + ex.Message);
-                return false;
             }
 
         }

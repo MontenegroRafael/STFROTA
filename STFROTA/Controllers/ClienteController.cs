@@ -53,12 +53,17 @@ namespace STFROTA.Controllers
             return Ok(cEncontrado);
         }
 
-        [HttpDelete]  // DELETAR CLIENTE POR ID
-        public IActionResult Remover(DeletarClienteModel cliente)
+        [HttpDelete]  // DELETAR CLIENTE POR NOME
+        public IActionResult Remover(string nome)
         {
-            var cEncontrado = repositorioCliente.Remover(cliente.IdEncontrar);
+            var cEncontrado = repositorioCliente.BuscarPorNome(nome);
 
-            return Ok(cEncontrado);
+            if (cEncontrado == null)
+                return NotFound("Não há nenhum registro com esse nome.");
+
+            repositorioCliente.Remover(cEncontrado);
+
+            return Ok();
         }
     }
 }

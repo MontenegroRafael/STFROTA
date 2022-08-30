@@ -55,14 +55,14 @@ namespace Client
 
                     clienteService.Salvar(cliente);
                 }
-                // EXCLUIR CLIENTE POR ID
+                // EXCLUIR CLIENTE POR NOME
                 else if (opcao == 3)
                 {
                     Listar.ClienteMostrarIdNome();
-                    Console.Write("Informe o ID do cliente para excluir: ");
-                    int id = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Informe o NOME do cliente para excluir: ");
+                    string nome = Console.ReadLine();
 
-                    clienteService.Remover(id);
+                    clienteService.Remover(nome);
                 }
                 // ATUALIZAR CLIENTE POR ID
                 else if (opcao == 4)
@@ -90,11 +90,12 @@ namespace Client
                     Console.WriteLine("=====================================");
 
                 }
-
+                // SAIR DO PROGRAMA
                 else if (opcao == 0)
                 {
                     break;
                 }
+                // OPÇÃO INVALIDA
                 else
                 {
                     Console.WriteLine("**** Opção Invalida! - DIGITE UMA OPÇÃO VALIDA - ");

@@ -66,21 +66,21 @@ namespace Client.Service
             }
         }
 
-        public void Remover(int id)
+        public void Remover(string nome)
         {
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage response;
 
-            var viewModel = new
-            {
-                IdEncontrar = id
-            };
+            //var viewModel = new
+            //{
+            //    IdEncontrar = nome
+            //};
 
             try
             {
-                var json = JsonConvert.SerializeObject(viewModel);
+                //var json = JsonConvert.SerializeObject(viewModel);
                 //monta a request para a api;
-                response = httpClient.DeleteAsync($"https://localhost:44335/cliente/remover").Result;
+                response = httpClient.DeleteAsync($"https://localhost:44335/cliente/remover?nome={nome}").Result;
 
                 var resultado = response.Content.ReadAsStringAsync().Result;
 
