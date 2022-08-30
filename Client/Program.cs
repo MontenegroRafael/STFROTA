@@ -88,6 +88,7 @@ namespace Client
                     Console.WriteLine("=====================================");
                     Console.WriteLine(" - Cliente atualizado com sucesso!");
                     Console.WriteLine("=====================================");
+
                 }
 
                 else if (opcao == 0)
