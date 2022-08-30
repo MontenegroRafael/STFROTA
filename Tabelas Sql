@@ -1,0 +1,15 @@
+SELECT * FROM Clientes;
+
+INSERT INTO Clientes VALUES('Gabriela','458721-99','21/02/2000','admin')
+
+DROP TABLE Clientes;
+
+CREATE TABLE Clientes
+(
+	IdCliente int IDENTITY (1,1) NOT NULL,
+	Nome varchar(255) NOT NULL,
+	Cnh varchar(50) NOT NULL,
+	DataCadastro datetime NOT NULL,
+	LoginCadastro varchar(50) NOT NULL,
+	CONSTRAINT Pk_Clientes PRIMARY KEY (IdCliente)
+);
