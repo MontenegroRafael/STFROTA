@@ -2,7 +2,7 @@ SELECT * FROM Clientes;
 
 INSERT INTO Clientes VALUES('Gabriela','458721-99','21/02/2000','admin')
 
-DROP TABLE Clientes;
+--DROP TABLE Clientes;
 
 CREATE TABLE Clientes
 (
@@ -14,10 +14,17 @@ CREATE TABLE Clientes
 	CONSTRAINT Pk_Clientes PRIMARY KEY (IdCliente)
 );
 
+SELECT IdCliente, Nome, CNH, DataCadastro, LoginCadastro FROM Clientes;
+
+SELECT IdCliente, Nome FROM Clientes;
+
+ALTER TABLE Clientes ADD DataAtualizacao datetime;
+
+
 -- Veiculo
 
 SELECT * FROM Veiculos;
-DROP TABLE Veiculos;
+--DROP TABLE Veiculos;
 
 CREATE TABLE Veiculos
 (
@@ -30,3 +37,56 @@ CREATE TABLE Veiculos
 
 	CONSTRAINT Pk_Veiculos PRIMARY KEY (IdVeiculo)
 );
+
+-- Situação
+
+CREATE TABLE Situacoes
+(
+	IdSituacao int IDENTITY (1,1) NOT NULL,
+	Nome varchar(30) NOT NULL,
+	DataCadastro datetime NOT NULL,
+	LoginCadastro varchar(15) NOT NULL,
+	IdVeiculo int NOT NULL,
+
+	CONSTRAINT Pk_Situacoes PRIMARY KEY (IdSituacao),
+	CONSTRAINT Fk_IdVeiculo FOREIGN KEY (IdVeiculo) REFERENCES Veiculos(IdVeiculo)
+
+);
+SELECT * FROM Situacoes; -- Mostra a tabela Situacao
+DROP TABLE Situacoes; -- Apagar a tabelo toda Situacao
+
+-- Alugueis
+
+CREATE TABLE Alugueis
+(
+	IdAluguel int IDENTITY (1,1)NOT NULL,
+	IdCliente int NOT NULL,
+	IdVeiculo int NOT NULL,
+	DataInicio date NOT NULL,
+	DataFim date NOT NULL,
+	DataCadastro datetime NOT NULL,
+	LoginCadastro varchar(15) NOT NULL,
+	DataAtualizacao datetime,
+
+	CONSTRAINT Pk_Alugueis PRIMARY KEY (IdAluguel),
+	CONSTRAINT Fk_IdVeiculoA FOREIGN KEY (IdVeiculo) REFERENCES Veiculos(IdVeiculo),
+	CONSTRAINT Fk_IdCliente FOREIGN KEY (IdCliente) REFERENCES Clientes(IdCliente)
+
+);
+SELECT * FROM Alugueis; -- Mostra a tabela Alugueis
+DROP TABLE Alugueis; -- Apagar a tabelo toda Alugueis
+
+-- Controle de Frota
+
+CREATE TABLE ControleFrota
+(
+	IdControleFrota int IDENTITY (1,1) NOT NULL,
+	IdSituacao int NOT NULL,
+	DataCadastro datetime NOT NULL,
+	LoginCadastro varchar(15) NOT NULL,
+
+	CONSTRAINT Pk_ControleFrota PRIMARY KEY (IdControleFrota),
+	CONSTRAINT Fk_IdSituacao FOREIGN KEY (IdSituacao) REFERENCES Situacoes(IdSituacao),
+);
+SELECT * FROM ControleFrota; -- Mostra a tabela Controle_Frota
+DROP TABLE ControleFrota; -- Apagar a tabelo toda Controle_Frota
