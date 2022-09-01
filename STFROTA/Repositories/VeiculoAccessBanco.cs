@@ -51,7 +51,7 @@ namespace STFROTA.Repositories
             List<VeiculoDto> veiculosEncontrados;
             try
             {
-                var query = @"SELECT IdVeiculo, Modelo, Placa,DataCadastro, LoginCadastro FROM Veiculos";
+                var query = @"SELECT IdVeiculo, Modelo, Placa, DataCadastro, LoginCadastro FROM Veiculos";
 
                 using (var connection = new SqlConnection(_connection))
                 {

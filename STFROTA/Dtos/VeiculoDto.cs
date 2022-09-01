@@ -7,10 +7,11 @@ namespace STFROTA.Dtos
 {
     public class VeiculoDto
     {
-        public int Id { get; set; }
+        public int IdVeiculo { get; set; }
         public string Modelo { get; set; }
         public string Placa { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
+        public DateTime DataAtualizacao { get; set; }
     }
 }

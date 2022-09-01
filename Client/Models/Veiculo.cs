@@ -20,5 +20,9 @@ namespace Client.Models
             DataCadastro = dataCadastro;
             LoginCadastro = loginCadastro;
         }
+
+        public Veiculo()
+        {
+        }
     }
 }

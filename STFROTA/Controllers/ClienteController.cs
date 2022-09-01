@@ -20,7 +20,7 @@ namespace STFROTA.Controllers
         //private static readonly List<Cliente> clientes = new List<Cliente>();
 
         ClienteAccessBanco repositorioCliente = new ClienteAccessBanco();
-        private object _clientes;
+        //private object _clientes;
 
         
         [HttpPost]  // CADASTRAR CLIENTE

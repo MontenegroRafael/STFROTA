@@ -17,11 +17,10 @@ namespace Client.Dtos
         {
         }
 
-        public VeiculoDto(int idVeiculo, string modelo, string placa)
+        public VeiculoDto(int idVeiculo, string modelo)
         {
             IdVeiculo = idVeiculo;
             Modelo = modelo;
-            Placa = placa;
         }
     }
 }
