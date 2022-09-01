@@ -138,6 +138,34 @@ namespace Client
 
                     veiculoService.Remover(modelo);
                 }
+
+            // VEICULO - ATUALIZAR VEICULO POR ID
+                else if (opcao == 8)
+                {
+                    Listar.VeiculoMostrarIdModelo();
+                    Console.Write("Informe o Id do veiculo para atualizar: ");
+                    int idVeiculo = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("Informe os dados do Veiculo:");
+
+                    Console.WriteLine("Modelo:");
+                    string Modelo = Console.ReadLine();
+                    Console.WriteLine("Placa: ");
+                    string Placa = Console.ReadLine();
+                    Console.WriteLine("Login de Cadastro:");
+                    string LoginCadastro = Console.ReadLine();
+                    Console.WriteLine("=====================================");
+
+                    Veiculo veiculo = new Veiculo(Modelo, Placa, LoginCadastro);
+
+                    veiculoService.Atualizar(idVeiculo, veiculo);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Veiculo atualizado com sucesso!");
+                    Console.WriteLine("=====================================");
+                }
+
             // SAIR DO PROGRAMA
                 else if (opcao == 0)
                 {

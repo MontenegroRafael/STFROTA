@@ -53,9 +53,9 @@ namespace Client.Menu
                 Console.WriteLine("========Listagem========");
                 foreach (Cliente p in listarClientes)
                 {
-                    Console.WriteLine("---------------------------");
                     Console.WriteLine(" Id: " + p.IdCliente);
                     Console.WriteLine(" Nome: " + p.Nome);
+                    Console.WriteLine("---------------------------");
                 }
             }
             catch (Exception ex)
@@ -91,9 +91,9 @@ namespace Client.Menu
                 Console.WriteLine("========Listagem========");
                 foreach (Veiculo p in listarVeiculos)
                 {
-                    Console.WriteLine("---------------------------");
                     Console.WriteLine(" Id: " + p.IdVeiculo);
                     Console.WriteLine(" Modelo: " + p.Modelo);
+                    Console.WriteLine("---------------------------");
                 }
             }
             catch (Exception ex)

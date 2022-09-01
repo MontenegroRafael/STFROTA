@@ -30,5 +30,13 @@ namespace Client.Models
             IdVeiculo = idVeiculo;
             Modelo = modelo;
         }
+
+        public Veiculo(string modelo, string placa, string loginCadastro)
+        {
+            Modelo = modelo;
+            Placa = placa;
+            LoginCadastro = loginCadastro;
+            DataAtualizacao = DateTime.Now;
+        }
     }
 }
