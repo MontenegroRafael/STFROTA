@@ -13,18 +13,27 @@ namespace Client.Menu
         {
 
             Console.WriteLine("|******************************** Menu ********************************|");
-            Console.WriteLine(" [1]  - Cliente - Listar Todos");
-            Console.WriteLine(" [2]  - Cliente - Cadastrar");
-            Console.WriteLine(" [3]  - Cliente - Excluir");
-            Console.WriteLine(" [4]  - Cliente - Atualizar");
-            Console.WriteLine(" [5]  - Veiculo - Listar Todos");
-            Console.WriteLine(" [6]  - Veiculo - Cadastrar");
-            Console.WriteLine(" [7]  - Veiculo - Excluir");
-            Console.WriteLine(" [8]  - Veiculo - Atualizar");
-            Console.WriteLine(" [9]  - ");
-            Console.WriteLine(" [10] - ");
-            Console.WriteLine(" [0]  - Sair");
-            Console.WriteLine("|_____________________________________________________________________|");
+            Console.WriteLine("|______________________________ Cliente  ______________________________|");
+            Console.WriteLine("|                                                                      |");
+            Console.WriteLine("|>>> [ 1  ] - Listar Todos                                             |");
+            Console.WriteLine("|>>> [ 2  ] - Cadastrar                                                |");
+            Console.WriteLine("|>>> [ 3  ] - Excluir                                                  |");
+            Console.WriteLine("|>>> [ 4  ] - Atualizar                                                |");
+            Console.WriteLine("|______________________________ Veiculo  ______________________________|");
+            Console.WriteLine("|                                                                      |");
+            Console.WriteLine("|>>> [ 5  ] - Listar Todos                                             |");
+            Console.WriteLine("|>>> [ 6  ] - Cadastrar                                                |");
+            Console.WriteLine("|>>> [ 7  ] - Excluir                                                  |");
+            Console.WriteLine("|>>> [ 8  ] - Atualizar                                                |");
+            Console.WriteLine("|______________________________ Aluguel  ______________________________|");
+            Console.WriteLine("|                                                                      |");
+            Console.WriteLine("|>>> [ 9  ] - Listar Todos                                             |");
+            Console.WriteLine("|>>> [ 10 ] - Cadastrar                                                |");
+            Console.WriteLine("|>>> [ 11 ] - Excluir                                                  |");
+            Console.WriteLine("|>>> [ 12 ] - Atualizar                                                |");
+            Console.WriteLine("|______________________________________________________________________|");
+            Console.WriteLine("|                                                                      |");
+            Console.WriteLine("|>>> [ 0  ] - Sair");
         }
         public static void ClienteMostrarIdNome()
         {
