@@ -52,14 +52,14 @@ namespace STFROTA.Controllers
         }
 
         [HttpDelete]  // DELETAR VEICULO POR NOME
-        public IActionResult Remover(string nome)
+        public IActionResult Remover(string modelo)
         {
-            var cEncontrado = repositorioVeiculo.BuscarPorNome(nome);
+            var vEncontrado = repositorioVeiculo.BuscarPorModelo(modelo);
 
-            if (cEncontrado == null)
+            if (vEncontrado == null)
                 return NotFound("Não há nenhum registro com esse nome.");
 
-            repositorioVeiculo.Remover(cEncontrado);
+            repositorioVeiculo.Remover(vEncontrado);
 
             return Ok();
         }

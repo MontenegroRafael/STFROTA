@@ -13,14 +13,14 @@ namespace Client.Menu
         {
 
             Console.WriteLine("|******************************** Menu ********************************|");
-            Console.WriteLine(" [1]  - Lista de Cliente");
-            Console.WriteLine(" [2]  - Cadastrar Cliente");
-            Console.WriteLine(" [3]  - Excluir Cliente");
-            Console.WriteLine(" [4]  - Atualizar Cliente");
-            Console.WriteLine(" [5]  - Lista de Veiculos");
-            Console.WriteLine(" [6]  - Cadastrar Veiculo");
-            Console.WriteLine(" [7]  - ");
-            Console.WriteLine(" [8]  - ");
+            Console.WriteLine(" [1]  - Cliente - Listar Todos");
+            Console.WriteLine(" [2]  - Cliente - Cadastrar");
+            Console.WriteLine(" [3]  - Cliente - Excluir");
+            Console.WriteLine(" [4]  - Cliente - Atualizar");
+            Console.WriteLine(" [5]  - Veiculo - Listar Todos");
+            Console.WriteLine(" [6]  - Veiculo - Cadastrar");
+            Console.WriteLine(" [7]  - Veiculo - Excluir");
+            Console.WriteLine(" [8]  - Veiculo - Atualizar");
             Console.WriteLine(" [9]  - ");
             Console.WriteLine(" [10] - ");
             Console.WriteLine(" [0]  - Sair");
@@ -56,6 +56,44 @@ namespace Client.Menu
                     Console.WriteLine("---------------------------");
                     Console.WriteLine(" Id: " + p.IdCliente);
                     Console.WriteLine(" Nome: " + p.Nome);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+            }
+        }
+
+        public static void VeiculoMostrarIdModelo()
+        {
+
+            try
+            {
+                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                List<Veiculo> listarVeiculos = new List<Veiculo>();
+
+                SqlDataReader resultado;
+                var query = "SELECT IdVeiculo, Modelo FROM Veiculos ";
+
+                using (var sql = new SqlConnection(connection))
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+                    command.Connection.Open();
+                    resultado = command.ExecuteReader();
+
+
+                    while (resultado.Read())
+                    {
+                        listarVeiculos.Add(new Veiculo(resultado.GetInt32(resultado.GetOrdinal("IdVeiculo")),
+                                                     resultado.GetString(resultado.GetOrdinal("Modelo"))));
+                    }
+                }
+                Console.WriteLine("========Listagem========");
+                foreach (Veiculo p in listarVeiculos)
+                {
+                    Console.WriteLine("---------------------------");
+                    Console.WriteLine(" Id: " + p.IdVeiculo);
+                    Console.WriteLine(" Modelo: " + p.Modelo);
                 }
             }
             catch (Exception ex)

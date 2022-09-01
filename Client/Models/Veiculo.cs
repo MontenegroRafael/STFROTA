@@ -24,5 +24,11 @@ namespace Client.Models
         public Veiculo()
         {
         }
+
+        public Veiculo(int idVeiculo, string modelo)
+        {
+            IdVeiculo = idVeiculo;
+            Modelo = modelo;
+        }
     }
 }

@@ -71,19 +71,19 @@ namespace STFROTA.Repositories
             }
         }
 
-        public VeiculoDto BuscarPorNome(string nome)
+        public VeiculoDto BuscarPorModelo(string modelo)
         {
             VeiculoDto veiculosEncontrados;
             try
             {
                 var query = @"SELECT IdVeiculo, Modelo, Placa,DataCadastro, LoginCadastro FROM Veiculos
-                                      WHERE Nome like CONCAT('%',@nome,'%')";
+                                      WHERE Modelo like CONCAT('%',@modelo,'%')";
 
                 using (var connection = new SqlConnection(_connection))
                 {
                     var parametros = new
                     {
-                        nome
+                        modelo
                     };
                     veiculosEncontrados = connection.QueryFirstOrDefault<VeiculoDto>(query, parametros);
                 }

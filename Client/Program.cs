@@ -24,7 +24,7 @@ namespace Client
 
             while (true)
             {
-            // MOSTRAR LISTA DE CLIENTES
+            // CLIENTE - MOSTRAR LISTA DE CLIENTES
                 if (opcao == 1)
                 {
                     var resultado = clienteService.BuscarTodos();
@@ -40,7 +40,8 @@ namespace Client
                         Console.WriteLine("=====================================");
                     }
                 }
-            // CADASTRAR CLIENTE
+
+            // CLIENTE - CADASTRAR CLIENTE
                 else if (opcao == 2)
                 {
                     Console.WriteLine("Informe os dados do Cliente:");
@@ -57,7 +58,7 @@ namespace Client
                     clienteService.Salvar(cliente);
                 }
 
-            // EXCLUIR CLIENTE POR NOME
+            // CLIENTE - EXCLUIR CLIENTE POR NOME
                 else if (opcao == 3)
                 {
                     Listar.ClienteMostrarIdNome();
@@ -67,7 +68,7 @@ namespace Client
                     clienteService.Remover(nome);
                 }
 
-            // ATUALIZAR CLIENTE POR ID
+            // CLIENTE - ATUALIZAR CLIENTE POR ID
                 else if (opcao == 4)
                 {
                     Listar.ClienteMostrarIdNome();
@@ -94,7 +95,7 @@ namespace Client
 
                 }
 
-            // MOSTRAR LISTA DE VEICULOS
+            // VEICULO - MOSTRAR LISTA DE VEICULOS
                 else if (opcao == 5)
                 {
                     var resultado = veiculoService.BuscarTodos();
@@ -111,7 +112,7 @@ namespace Client
                     }
                 }
 
-                // CADASTRAR VEICULO
+            // VEICULO - CADASTRAR VEICULO
                 else if (opcao == 6)
                 {
                     Console.WriteLine("Informe os dados do Veiculo:");
@@ -126,6 +127,16 @@ namespace Client
                     Veiculo veiculo = new Veiculo(Modelo, Placa, DataCadastro, LoginCadastro);
 
                     veiculoService.Salvar(veiculo);
+                }
+
+            // VEICULO - EXCLUIR VEICULO POR MODELO
+                else if (opcao == 7)
+                {
+                    Listar.VeiculoMostrarIdModelo();
+                    Console.Write("Informe o MODELO do veiculo para excluir: ");
+                    string modelo = Console.ReadLine();
+
+                    veiculoService.Remover(modelo);
                 }
             // SAIR DO PROGRAMA
                 else if (opcao == 0)
