@@ -31,6 +31,13 @@ namespace Client.Menu
             Console.WriteLine("|>>> [ 10 ] - Cadastrar                                                |");
             Console.WriteLine("|>>> [ 11 ] - Excluir                                                  |");
             Console.WriteLine("|>>> [ 12 ] - Atualizar                                                |");
+            Console.WriteLine("|________________________ Situação do Veiculo _________________________|");
+            Console.WriteLine("|                                                                      |");
+            Console.WriteLine("|>>> [ 13 ] - Cadastrar                                                |");
+            Console.WriteLine("|>>> [ 14 ] - Atualizar                                                |");
+            Console.WriteLine("|________________________ Controle de Frota  __________________________|");
+            Console.WriteLine("|                                                                      |");
+            Console.WriteLine("|>>> [ 15 ] - Listar Todos                                             |");
             Console.WriteLine("|______________________________________________________________________|");
             Console.WriteLine("|                                                                      |");
             Console.WriteLine("|>>> [ 0  ] - Sair");
