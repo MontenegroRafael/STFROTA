@@ -9,29 +9,28 @@ using Dapper;
 
 namespace STFROTA.Repositories
 {
-    public class ClienteAccessBanco
+    public class VeiculoAccessBanco
     {
-
         //private readonly string _connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Cadastro;Integrated Security=True;";
         private readonly string _connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
 
-        public bool SalvarCliente(Cliente cliente)
+        public bool SalvarVeiculo(Veiculo veiculo)
         {
-            
+
             try
             {
-                var query = @"INSERT INTO Clientes 
-                              (Nome, CNH, DataCadastro, LoginCadastro)
-                              VALUES (@nome,@CNH,@dataCadastro,@loginCadastro)";
+                var query = @"INSERT INTO Veiculos 
+                              (Modelo, Placa, DataCadastro, LoginCadastro)
+                              VALUES (@modelo,@placa,@dataCadastro,@loginCadastro)";
 
                 using (var sql = new SqlConnection(_connection))
 
                 {
                     SqlCommand command = new SqlCommand(query, sql);
-                    command.Parameters.AddWithValue("@nome", cliente.Nome);
-                    command.Parameters.AddWithValue("@CNH", cliente.Cnh);
-                    command.Parameters.AddWithValue("@dataCadastro", cliente.DataCadastro);
-                    command.Parameters.AddWithValue("@loginCadastro", cliente.LoginCadastro);
+                    command.Parameters.AddWithValue("@modelo", veiculo.Modelo);
+                    command.Parameters.AddWithValue("@placa", veiculo.Placa);
+                    command.Parameters.AddWithValue("@dataCadastro", veiculo.DataCadastro);
+                    command.Parameters.AddWithValue("@loginCadastro", veiculo.LoginCadastro);
                     command.Connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -47,37 +46,37 @@ namespace STFROTA.Repositories
 
         }
 
-        public List<ClienteDto> BuscarTodos()
+        public List<VeiculoDto> BuscarTodos()
         {
-            List<ClienteDto> clientesEncontrados;
+            List<VeiculoDto> veiculosEncontrados;
             try
             {
-                var query = @"SELECT IdCliente, Nome, CNH, DataCadastro, LoginCadastro FROM Clientes";
+                var query = @"SELECT IdVeiculo, Modelo, Placa,DataCadastro, LoginCadastro FROM Veiculos";
 
                 using (var connection = new SqlConnection(_connection))
                 {
 
-                    clientesEncontrados = connection.Query<ClienteDto>(query).ToList();
+                    veiculosEncontrados = connection.Query<VeiculoDto>(query).ToList();
                 }
 
-                return clientesEncontrados;
+                return veiculosEncontrados;
 
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Erro: " + ex.Message);
-                
+
                 return null;
             }
         }
 
-        public ClienteDto BuscarPorNome(string nome)
+        public VeiculoDto BuscarPorNome(string nome)
         {
-            ClienteDto clientesEncontrados;
+            VeiculoDto veiculosEncontrados;
             try
             {
-                var query = @"SELECT IdCliente, Nome, CNH, DataCadastro, LoginCadastro FROM Clientes
+                var query = @"SELECT IdVeiculo, Modelo, Placa,DataCadastro, LoginCadastro FROM Veiculos
                                       WHERE Nome like CONCAT('%',@nome,'%')";
 
                 using (var connection = new SqlConnection(_connection))
@@ -86,10 +85,10 @@ namespace STFROTA.Repositories
                     {
                         nome
                     };
-                    clientesEncontrados = connection.QueryFirstOrDefault<ClienteDto>(query, parametros);
+                    veiculosEncontrados = connection.QueryFirstOrDefault<VeiculoDto>(query, parametros);
                 }
 
-                return clientesEncontrados;
+                return veiculosEncontrados;
 
             }
             catch (Exception ex)
@@ -100,26 +99,26 @@ namespace STFROTA.Repositories
 
         }
 
-        public bool Atualizar(int idCliente, Cliente cliente)
+        public bool Atualizar(int idVeiculo, Veiculo veiculo)
         {
             try
             {
-                var query = @"UPDATE Clientes SET Nome = @nome, CNH = @cnh, DataAtualizacao = @dataAtualizacao, LoginCadastro = @loginCadastro 
-                                WHERE IdCliente = @idCliente";
+                var query = @"UPDATE Veiculos SET Modelo = @modelo, Placa = @placa, DataAtualizacao = @dataAtualizacao, LoginCadastro = @loginCadastro 
+                                WHERE IdVeiculo = @idVeiculo";
 
                 using (var sql = new SqlConnection(_connection))
 
                 {
                     SqlCommand command = new SqlCommand(query, sql);
-                    command.Parameters.AddWithValue("@nome", cliente.Nome);
-                    command.Parameters.AddWithValue("@cnh", cliente.Cnh);
-                    command.Parameters.AddWithValue("@loginCadastro", cliente.LoginCadastro);
-                    command.Parameters.AddWithValue("@dataAtualizacao", cliente.DataAtualizacao);
-                    command.Parameters.AddWithValue("@idCliente", idCliente);
+                    command.Parameters.AddWithValue("@modelo", veiculo.Modelo);
+                    command.Parameters.AddWithValue("@placa", veiculo.Placa);
+                    command.Parameters.AddWithValue("@dataAtualizacao", veiculo.DataAtualizacao);
+                    command.Parameters.AddWithValue("@loginCadastro", veiculo.LoginCadastro);
+                    command.Parameters.AddWithValue("@idVeiculo", idVeiculo);
                     command.Connection.Open();
                     command.ExecuteNonQuery();
                 }
-                
+
                 return true;
             }
             catch (Exception ex)
@@ -128,17 +127,17 @@ namespace STFROTA.Repositories
                 return false;
             }
         }
-        public void Remover(ClienteDto nome)
+        public void Remover(VeiculoDto modelo)
         {
             try
             {
-                var query = @"DELETE FROM Clientes WHERE Nome = @nome";
-                
+                var query = @"DELETE FROM Veiculos WHERE Modelo = @modelo";
+
                 using (var sql = new SqlConnection(_connection))
                 {
                     SqlCommand command = new SqlCommand(query, sql);
-                    
-                    command.Parameters.AddWithValue("@nome", nome.Nome);
+
+                    command.Parameters.AddWithValue("@modelo", modelo.Modelo);
                     command.Connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -150,6 +149,5 @@ namespace STFROTA.Repositories
             }
 
         }
-
     }
 }

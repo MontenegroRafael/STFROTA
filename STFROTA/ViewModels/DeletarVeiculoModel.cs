@@ -6,8 +6,9 @@ using STFROTA.Models;
 
 namespace STFROTA.ViewModels
 {
-    public class SalvarCliente
+    public class DeletarVeiculoModel
     {
-        public Cliente Cliente { get; set; }
+        public string Nome { get; set; }
+        public Cliente Remover { get; set; }
     }
 }

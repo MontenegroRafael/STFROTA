@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Client.Dtos
 {
-    class ClienteDto
+    public class ClienteDto
     {
        
 

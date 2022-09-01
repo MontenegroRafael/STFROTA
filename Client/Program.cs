@@ -14,8 +14,9 @@ namespace Client
     {
         public static void Main(string[] args)
         {
-            // INSTANCIAR
+        // INSTANCIAR
             ClienteService clienteService = new ClienteService();
+            VeiculoService veiculoService = new VeiculoService();
 
             Listar.MostarMenu();
             Console.Write("Qual Opção Deseja? ");
@@ -23,11 +24,11 @@ namespace Client
 
             while (true)
             {
-                // MOSTRAR LISTA DE CLIENTES
-                if (opcao == 1) 
+            // MOSTRAR LISTA DE CLIENTES
+                if (opcao == 1)
                 {
                     var resultado = clienteService.BuscarTodos();
-                    //mostra os dados na tela
+                // MOSTRA OS DADOS NA TELA
                     foreach (var item in resultado)
                     {
                         Console.WriteLine("=====================================");
@@ -39,8 +40,8 @@ namespace Client
                         Console.WriteLine("=====================================");
                     }
                 }
-                // CADASTRAR CLIENTE
-                else if (opcao == 2) 
+            // CADASTRAR CLIENTE
+                else if (opcao == 2)
                 {
                     Console.WriteLine("Informe os dados do Cliente:");
                     Console.WriteLine("Nome:");
@@ -55,7 +56,8 @@ namespace Client
 
                     clienteService.Salvar(cliente);
                 }
-                // EXCLUIR CLIENTE POR NOME
+
+            // EXCLUIR CLIENTE POR NOME
                 else if (opcao == 3)
                 {
                     Listar.ClienteMostrarIdNome();
@@ -64,13 +66,14 @@ namespace Client
 
                     clienteService.Remover(nome);
                 }
-                // ATUALIZAR CLIENTE POR ID
+
+            // ATUALIZAR CLIENTE POR ID
                 else if (opcao == 4)
                 {
                     Listar.ClienteMostrarIdNome();
                     Console.Write("Informe o Id do cliente para atualizar: ");
                     int idCliente = Convert.ToInt32(Console.ReadLine());
-                    
+
                     Console.WriteLine("=====================================");
                     Console.WriteLine("Informe os dados do Cliente:");
 
@@ -90,16 +93,52 @@ namespace Client
                     Console.WriteLine("=====================================");
 
                 }
-                // SAIR DO PROGRAMA
+
+            // MOSTRAR LISTA DE VEICULOS
+                else if (opcao == 5)
+                {
+                    var resultado = veiculoService.BuscarTodos();
+                // MOSTRA OS DADOS NA TELA
+                    foreach (var item in resultado)
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("Id: " + item.IdVeiculo);
+                        Console.WriteLine("Modelo: " + item.Modelo);
+                        Console.WriteLine("Placa: " + item.Placa);
+                        Console.WriteLine("Data_Cadastro: " + item.DataCadastro);
+                        Console.WriteLine("Login_Cadastro: " + item.LoginCadastro);
+                        Console.WriteLine("=====================================");
+                    }
+                }
+
+                // CADASTRAR VEICULO
+                else if (opcao == 6)
+                {
+                    Console.WriteLine("Informe os dados do Veiculo:");
+                    Console.WriteLine("Modelo:");
+                    string Modelo = Console.ReadLine();
+                    Console.WriteLine("Placa: ");
+                    string Placa = Console.ReadLine();
+                    Console.WriteLine("Data de Cadastro:");
+                    DateTime DataCadastro = Convert.ToDateTime(Console.ReadLine());
+                    Console.WriteLine("Login de Cadastro:");
+                    string LoginCadastro = Console.ReadLine();
+                    Veiculo veiculo = new Veiculo(Modelo, Placa, DataCadastro, LoginCadastro);
+
+                    veiculoService.Salvar(veiculo);
+                }
+            // SAIR DO PROGRAMA
                 else if (opcao == 0)
                 {
                     break;
                 }
-                // OPÇÃO INVALIDA
+
+            // OPÇÃO INVALIDA
                 else
                 {
                     Console.WriteLine("**** Opção Invalida! - DIGITE UMA OPÇÃO VALIDA - ");
                 }
+
                 Listar.MostarMenu();
                 Console.Write("Qual Opção Deseja? ");
                 opcao = Convert.ToInt32(Console.ReadLine());

@@ -13,12 +13,12 @@ namespace Client.Menu
         {
 
             Console.WriteLine("|******************************** Menu ********************************|");
-            Console.WriteLine(" [1]  - Mostrar Lista de Cliente");
+            Console.WriteLine(" [1]  - Lista de Cliente");
             Console.WriteLine(" [2]  - Cadastrar Cliente");
             Console.WriteLine(" [3]  - Excluir Cliente");
             Console.WriteLine(" [4]  - Atualizar Cliente");
-            Console.WriteLine(" [5]  - ");
-            Console.WriteLine(" [6]  - ");
+            Console.WriteLine(" [5]  - Lista de Veiculos");
+            Console.WriteLine(" [6]  - Cadastrar Veiculo");
             Console.WriteLine(" [7]  - ");
             Console.WriteLine(" [8]  - ");
             Console.WriteLine(" [9]  - ");

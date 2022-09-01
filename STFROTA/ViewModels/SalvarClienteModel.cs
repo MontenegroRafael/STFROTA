@@ -6,10 +6,8 @@ using STFROTA.Models;
 
 namespace STFROTA.ViewModels
 {
-    public class SalvarAluguel
+    public class SalvarClienteModel
     {
         public Cliente Cliente { get; set; }
-        public Veiculo Veiculo { get; set; }
-
     }
 }
