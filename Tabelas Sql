@@ -13,3 +13,20 @@ CREATE TABLE Clientes
 	LoginCadastro varchar(50) NOT NULL,
 	CONSTRAINT Pk_Clientes PRIMARY KEY (IdCliente)
 );
+
+-- Veiculo
+
+SELECT * FROM Veiculos;
+DROP TABLE Veiculos;
+
+CREATE TABLE Veiculos
+(
+	IdVeiculo int IDENTITY (1,1) NOT NULL,
+	Modelo varchar(50) NOT NULL,
+	Placa varchar(10) NOT NULL,
+	DataCadastro datetime NOT NULL,
+	LoginCadastro varchar(50) NOT NULL,
+	DataAtualizacao datetime,
+
+	CONSTRAINT Pk_Veiculos PRIMARY KEY (IdVeiculo)
+);
