@@ -10,7 +10,7 @@ namespace Client.Service
 {
     class SituacaoService
     {
-        public void Atualizar(int IdVeiculo, Situacao situacao)
+        public void Cadastrar(int IdVeiculo, Situacao situacao)
         {
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage response;
@@ -25,7 +25,7 @@ namespace Client.Service
             {
                 var json = JsonConvert.SerializeObject(viewModel);
                 //monta a request para a api;
-                response = httpClient.PutAsync($"https://localhost:44335/situacao/cadastrar", new StringContent(json, Encoding.UTF8, "application/json")).Result;
+                response = httpClient.PostAsync($"https://localhost:44335/situacao/cadastrar", new StringContent(json, Encoding.UTF8, "application/json")).Result;
 
                 var resultado = response.Content.ReadAsStringAsync().Result;
 

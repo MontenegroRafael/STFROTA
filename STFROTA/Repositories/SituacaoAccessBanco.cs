@@ -11,22 +11,24 @@ namespace STFROTA.Repositories
 {
     public class SituacaoAccessBanco
     {
-        public bool Atualizar(int idVeiculo, Situacao situacao)
+        //private readonly string _connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Cadastro;Integrated Security=True;";
+        private readonly string _connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+
+        public bool Cadastrar(int idVeiculo, Situacao situacao)
         {
             try
             {
                 var query = @"INSERT INTO Situacoes " +
                             "(Nome, DataCadastro, LoginCadastro, IdVeiculo)" +
-                            "VALUES (@ddd, @numero, @idVeiculo)";
+                            "VALUES (@nome, @dataCadastro, @loginCadastro, @idVeiculo)";
 
                 using (var sql = new SqlConnection(_connection))
 
                 {
                     SqlCommand command = new SqlCommand(query, sql);
-                    command.Parameters.AddWithValue("@modelo", veiculo.Modelo);
-                    command.Parameters.AddWithValue("@placa", veiculo.Placa);
-                    command.Parameters.AddWithValue("@dataAtualizacao", veiculo.DataAtualizacao);
-                    command.Parameters.AddWithValue("@loginCadastro", veiculo.LoginCadastro);
+                    command.Parameters.AddWithValue("@nome", situacao.Nome);
+                    command.Parameters.AddWithValue("@dataCadastro", situacao.DataCadastro);
+                    command.Parameters.AddWithValue("@loginCadastro", situacao.LoginCadastro);
                     command.Parameters.AddWithValue("@idVeiculo", idVeiculo);
                     command.Connection.Open();
                     command.ExecuteNonQuery();

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace STFROTA.Models
+namespace STFROTA.Dtos
 {
-    public class Situacao
+    public class SituacaoDto
     {
         public int IdSituacao { get; set; }
         public string Nome { get; set; }
@@ -13,8 +13,5 @@ namespace STFROTA.Models
         public string LoginCadastro { get; set; }
         public DateTime DataAtualizacao { get; set; }
 
-        public Situacao()
-        {
-        }
     }
 }

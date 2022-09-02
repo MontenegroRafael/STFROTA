@@ -16,13 +16,15 @@ namespace STFROTA.Controllers
     [ApiController]
     public class SituacaoController : ControllerBase
     {
+        SituacaoAccessBanco repositorioSituacao = new SituacaoAccessBanco();
+
         [HttpPost]  // CADASTRAR SITUAÇÃO DO VEICULO POR ID
-        public IActionResult Atualizar(AtualizarVeiculoModel veiculo)
+        public IActionResult Cadastrar(CadastrarSituacaoModel situacao)
 
              SituacaoAccessBanco repositorioSituacao = new SituacaoAccessBanco();
 
         {
-            var vEncontrado = repositorioSituacao.Cadastrar(veiculo.IdEncontrar, veiculo.Atualizar);
+            var vEncontrado = repositorioSituacao.Cadastrar(situacao.IdEncontrar, situacao.Cadastrar);
             return Ok(vEncontrado);
         }
     }
