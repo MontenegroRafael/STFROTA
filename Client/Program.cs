@@ -17,6 +17,7 @@ namespace Client
         // INSTANCIAR
             ClienteService clienteService = new ClienteService();
             VeiculoService veiculoService = new VeiculoService();
+            SituacaoService situacaoService = new SituacaoService();
 
             Listar.MostarMenu();
             Console.Write("Qual Opção Deseja? ");
@@ -193,6 +194,56 @@ namespace Client
             // SITUAÇÃO - CADASTRAR SITUAÇÃO
                 else if (opcao == 13)
                 {
+                    Listar.VeiculoMostrarIdModelo();
+                    Console.WriteLine(" Digite o ID do veiculo para cadastrar a SITUAÇÃO: ");
+                    int IdVeiculo = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("   Informe a Situação do Veiculo:    ");
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" [ 1 ] - Disponivel:");
+                    Console.WriteLine(" [ 2 ] - Alugado");
+                    Console.WriteLine(" [ 3 ] - Em Manutenção");
+                    Console.WriteLine(" [ 4 ] - Vendido");
+                    int resposta = Convert.ToInt32(Console.ReadLine());
+                    string Nome = "";
+                    while (true)
+                    {
+                        if (resposta == 1)
+                        {
+                            Nome = "Disponivel";
+                            break;
+                        }
+                        else if (resposta == 2)
+                        {
+                            Nome = "Alugado";
+                            break;
+                        }
+                        else if (resposta == 3)
+                        {
+                            Nome = "Em Manutenção";
+                            break;
+                        }
+                        else if (resposta == 4)
+                        {
+                            Nome = "Vendido";
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("OPÇÃO INVALIDA!!! - Digite novamente.");
+                        }
+                    }
+                    Console.WriteLine("Login de Cadastro:");
+                    string LoginCadastro = Console.ReadLine();
+                    Console.WriteLine("=====================================");
+
+                    Situacao situacao = new Situacao(Nome, LoginCadastro);
+
+                    situacaoService.Cadastrar(IdVeiculo, situacao);
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Situação Cadastrada com sucesso!");
+                    Console.WriteLine("=====================================");
 
                 }
 
