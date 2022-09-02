@@ -166,6 +166,48 @@ namespace Client
                     Console.WriteLine("=====================================");
                 }
 
+            // OFF ALUGUEL - MOSTRAR LISTA DE ALUGUEIS
+                else if (opcao == 9)
+                {
+
+                }
+
+            // OFF ALUGUEL - CADASTRAR ALUGUEL
+                else if (opcao == 10)
+                {
+
+                }
+
+            // OFF ALUGUEL - EXCLUIR ALUGUEL POR ID
+                else if (opcao == 11)
+                {
+
+                }
+
+            // OFF ALUGUEL - ATUALIZAR ALUGUEL POR ID
+                else if (opcao == 12)
+                {
+
+                }
+
+            // OFF SITUAÇÃO - CADASTRAR SITUAÇÃO
+                else if (opcao == 13)
+                {
+
+                }
+
+            // OFF SITUAÇÃO - ATUALIZAR SITUAÇÃO
+                else if (opcao == 14)
+                {
+
+                }
+
+            // OFF CONTROLE DE FROTA
+                else if (opcao == 15)
+                {
+
+                }
+
             // SAIR DO PROGRAMA
                 else if (opcao == 0)
                 {

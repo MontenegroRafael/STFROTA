@@ -29,7 +29,7 @@ namespace Client.Menu
             Console.WriteLine("|                                                                      |");
             Console.WriteLine("|>>> [ 9  ] - Listar Todos                                             |");
             Console.WriteLine("|>>> [ 10 ] - Cadastrar                                                |");
-            Console.WriteLine("|>>> [ 11 ] - Excluir                                                  |");
+            Console.WriteLine("|>>> [ 11 ] - Excluir por ID                                           |");
             Console.WriteLine("|>>> [ 12 ] - Atualizar                                                |");
             Console.WriteLine("|________________________ Situação do Veiculo _________________________|");
             Console.WriteLine("|                                                                      |");
