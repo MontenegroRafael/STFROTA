@@ -205,6 +205,7 @@ namespace Client
                     Console.WriteLine(" [ 2 ] - Alugado");
                     Console.WriteLine(" [ 3 ] - Em Manutenção");
                     Console.WriteLine(" [ 4 ] - Vendido");
+                    Console.Write(">>> Situação: ");
                     int resposta = Convert.ToInt32(Console.ReadLine());
                     string Nome = "";
                     while (true)

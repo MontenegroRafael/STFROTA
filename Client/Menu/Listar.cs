@@ -35,7 +35,7 @@ namespace Client.Menu
             Console.WriteLine("|                                                                      |");
             Console.WriteLine("|>>> [ 13 ] - Cadastrar                                                |");
             Console.WriteLine("|>>> [ 14 ] - Atualizar                                                |");
-            Console.WriteLine("|________________________ Controle de Frota  __________________________|");
+            Console.WriteLine("|________________________  Controle de Frota  _________________________|");
             Console.WriteLine("|                                                                      |");
             Console.WriteLine("|>>> [ 15 ] - Listar Todos                                             |");
             Console.WriteLine("|______________________________________________________________________|");

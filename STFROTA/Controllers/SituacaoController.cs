@@ -20,9 +20,6 @@ namespace STFROTA.Controllers
 
         [HttpPost]  // CADASTRAR SITUAÇÃO DO VEICULO POR ID
         public IActionResult Cadastrar(CadastrarSituacaoModel situacao)
-
-             SituacaoAccessBanco repositorioSituacao = new SituacaoAccessBanco();
-
         {
             var vEncontrado = repositorioSituacao.Cadastrar(situacao.IdEncontrar, situacao.Cadastrar);
             return Ok(vEncontrado);
