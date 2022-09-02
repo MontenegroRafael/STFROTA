@@ -52,6 +52,8 @@ CREATE TABLE Situacoes
 	CONSTRAINT Fk_IdVeiculo FOREIGN KEY (IdVeiculo) REFERENCES Veiculos(IdVeiculo)
 
 );
+ALTER TABLE Situacoes ADD DataAtualizacao datetime;
+
 SELECT * FROM Situacoes; -- Mostra a tabela Situacao
 DROP TABLE Situacoes; -- Apagar a tabelo toda Situacao
 
