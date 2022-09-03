@@ -187,7 +187,7 @@ namespace Client
                     Listar.ClienteMostrarIdNome();
                     Console.Write(">>> Id do Cliente: ");
                     int IdCliente = Convert.ToInt32(Console.ReadLine());
-                    
+                    Listar.VeiculoMostrarIdModeloSituacao();
                     Console.Write(">>> Id do Veiculo: ");
                     int IdVeiculo = Convert.ToInt32(Console.ReadLine());
                     Console.Write(">>> Início do Aluguel - DATA: ");

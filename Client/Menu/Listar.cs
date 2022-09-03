@@ -128,7 +128,7 @@ namespace Client.Menu
                 List<Situacao> listarVeiculos1 = new List<Situacao>();
 
                 SqlDataReader resultado;
-                var query = "SELECT v.IdVeiculo, v.Modelo, s.Nome FROM Veiculos v LEFT JOIN Situacao s ON v.IdVeiculo = IdVeiculo ";
+                var query = "SELECT v.IdVeiculo, v.Modelo, s.Nome FROM Veiculos v LEFT JOIN Situacoes s ON v.IdVeiculo = s.IdVeiculo ";
                 //SELECT p.Id, p.Nome, p.Cpf, p.Rg, p.DatadeNascimento, p.Naturalidade, t.Numero, t.Ddd
                 //FROM Pessoa p LEFT JOIN Telefone t ON p.Id = t.IdPessoa ";
                 using (var sql = new SqlConnection(connection))
@@ -142,7 +142,7 @@ namespace Client.Menu
                     {
                         listarVeiculos.Add(new Veiculo(resultado.GetInt32(resultado.GetOrdinal("IdVeiculo")),
                                                      resultado.GetString(resultado.GetOrdinal("Modelo"))));
-                        listarVeiculos1.Add(new Situacao(resultado.GetString(resultado.GetOrdinal("Nome"))));
+                        listarVeiculos1.Add(new Situacao(resultado.SafeGetString(resultado.GetOrdinal("Nome"))));
                     }
                 }
                 Console.WriteLine("========Listagem========");
@@ -159,5 +159,17 @@ namespace Client.Menu
                 Console.WriteLine("Erro: " + ex.Message);
             }
         }
+
+    }
+
+    public static class Extensions // extensão criada para quando o valor resgatado do banco for NULL então fica vazio (Empty)
+    {
+        public static string SafeGetString(this SqlDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetString(colIndex);
+            return string.Empty;
+        }
+
     }
 }
