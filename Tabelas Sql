@@ -92,3 +92,5 @@ CREATE TABLE ControleFrota
 );
 SELECT * FROM ControleFrota; -- Mostra a tabela Controle_Frota
 DROP TABLE ControleFrota; -- Apagar a tabelo toda Controle_Frota
+
+SELECT * FROM Situacoes INNER JOIN Veiculos ON Situacoes.IdVeiculo = Veiculos.IdVeiculo;
