@@ -22,6 +22,7 @@ namespace Client
             ClienteService clienteService = new ClienteService();
             VeiculoService veiculoService = new VeiculoService();
             SituacaoService situacaoService = new SituacaoService();
+            AluguelService AluguelService = new AluguelService();
 
             Listar.MostarMenu();
             Console.Write("Qual Opção Deseja? ");
@@ -180,7 +181,22 @@ namespace Client
             // OFF ALUGUEL - CADASTRAR ALUGUEL
                 else if (opcao == 10)
                 {
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("   Informe os dados abaixo:    ");
+                    Console.WriteLine("=====================================");
+                    Console.Write(">>> Id do Cliente: ");
+                    int IdCliente = Convert.ToInt32(Console.ReadLine());
+                    Console.Write(">>> Id do Veiculo: ");
+                    int IdVeiculo = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(">>> Início do Aluguel - DATA: ");
+                    DateTime DataInicio = Convert.ToDateTime(Console.ReadLine());
+                    Console.WriteLine(">>> Fim do Aluguel - DATA: ");
+                    DateTime DataFim = Convert.ToDateTime(Console.ReadLine());
+                    Console.WriteLine("Login de Cadastro:");
+                    string LoginCadastro = Console.ReadLine();
+                    Aluguel aluguel = new Aluguel(IdCliente, IdVeiculo, DataInicio, DataFim, LoginCadastro);
 
+                    AluguelService.Salvar(aluguel);
                 }
 
             // OFF ALUGUEL - EXCLUIR ALUGUEL POR ID
