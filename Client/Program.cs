@@ -178,21 +178,23 @@ namespace Client
 
                 }
 
-            // OFF ALUGUEL - CADASTRAR ALUGUEL
+            // ALUGUEL - CADASTRAR ALUGUEL
                 else if (opcao == 10)
                 {
                     Console.WriteLine("=====================================");
                     Console.WriteLine("   Informe os dados abaixo:    ");
                     Console.WriteLine("=====================================");
+                    Listar.ClienteMostrarIdNome();
                     Console.Write(">>> Id do Cliente: ");
                     int IdCliente = Convert.ToInt32(Console.ReadLine());
+                    
                     Console.Write(">>> Id do Veiculo: ");
                     int IdVeiculo = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine(">>> Início do Aluguel - DATA: ");
+                    Console.Write(">>> Início do Aluguel - DATA: ");
                     DateTime DataInicio = Convert.ToDateTime(Console.ReadLine());
-                    Console.WriteLine(">>> Fim do Aluguel - DATA: ");
+                    Console.Write(">>> Fim do Aluguel - DATA: ");
                     DateTime DataFim = Convert.ToDateTime(Console.ReadLine());
-                    Console.WriteLine("Login de Cadastro:");
+                    Console.Write("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
                     Aluguel aluguel = new Aluguel(IdCliente, IdVeiculo, DataInicio, DataFim, LoginCadastro);
 

@@ -117,5 +117,47 @@ namespace Client.Menu
                 Console.WriteLine("Erro: " + ex.Message);
             }
         }
+
+        public static void VeiculoMostrarIdModeloSituacao()
+        {
+
+            try
+            {
+                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                List<Veiculo> listarVeiculos = new List<Veiculo>();
+                List<Situacao> listarVeiculos1 = new List<Situacao>();
+
+                SqlDataReader resultado;
+                var query = "SELECT v.IdVeiculo, v.Modelo, s.Nome FROM Veiculos v LEFT JOIN Situacao s ON v.IdVeiculo = IdVeiculo ";
+                //SELECT p.Id, p.Nome, p.Cpf, p.Rg, p.DatadeNascimento, p.Naturalidade, t.Numero, t.Ddd
+                //FROM Pessoa p LEFT JOIN Telefone t ON p.Id = t.IdPessoa ";
+                using (var sql = new SqlConnection(connection))
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+                    command.Connection.Open();
+                    resultado = command.ExecuteReader();
+
+
+                    while (resultado.Read())
+                    {
+                        listarVeiculos.Add(new Veiculo(resultado.GetInt32(resultado.GetOrdinal("IdVeiculo")),
+                                                     resultado.GetString(resultado.GetOrdinal("Modelo"))));
+                        listarVeiculos1.Add(new Situacao(resultado.GetString(resultado.GetOrdinal("Nome"))));
+                    }
+                }
+                Console.WriteLine("========Listagem========");
+                for (int i = 0; i < listarVeiculos.Count; i++)
+                {
+                    Console.WriteLine(" Id: " + listarVeiculos[i].IdVeiculo);
+                    Console.WriteLine(" Modelo: " + listarVeiculos[i].Modelo);
+                    Console.WriteLine(" Situação: " + listarVeiculos1[i].Nome);
+                    Console.WriteLine("---------------------------");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+            }
+        }
     }
 }

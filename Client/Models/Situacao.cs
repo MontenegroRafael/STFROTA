@@ -22,6 +22,10 @@ namespace Client.Models
             DataAtualizacao = DateTime.Now;
         }
 
+        public Situacao(string nome)
+        {
+            Nome = nome;
+        }
     }
 
 }
