@@ -252,7 +252,7 @@ namespace Client
 
                 }
 
-            // OFF SITUAÇÃO - ATUALIZAR SITUAÇÃO
+            // SITUAÇÃO - ATUALIZAR SITUAÇÃO
                 else if (opcao == 14)
                 {
                     Listar.VeiculoMostrarIdModelo();
