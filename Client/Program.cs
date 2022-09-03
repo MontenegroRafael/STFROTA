@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* - “Digno és tu, Senhor e Deus nosso, de receber a glória, a honra e o poder, 
+      pois foste tu que criaste o universo; por tua vontade, ele não era e foi criado." 
+   - Apocalipse 4:11 .*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -243,7 +247,7 @@ namespace Client
 
                     situacaoService.Cadastrar(IdVeiculo, situacao);
                     Console.WriteLine("=====================================");
-                    Console.WriteLine(" - Situação Cadastrada com sucesso!");
+                    Console.WriteLine(" - Situação Atualizada com sucesso!");
                     Console.WriteLine("=====================================");
 
                 }
@@ -251,7 +255,59 @@ namespace Client
             // OFF SITUAÇÃO - ATUALIZAR SITUAÇÃO
                 else if (opcao == 14)
                 {
+                    Listar.VeiculoMostrarIdModelo();
+                    Console.WriteLine(" Digite o ID do veiculo para atualizar a SITUAÇÃO: ");
+                    int IdVeiculo = Convert.ToInt32(Console.ReadLine());
 
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("   Informe a Situação do Veiculo:    ");
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" [ 1 ] - Disponivel:");
+                    Console.WriteLine(" [ 2 ] - Alugado");
+                    Console.WriteLine(" [ 3 ] - Em Manutenção");
+                    Console.WriteLine(" [ 4 ] - Vendido");
+                    Console.Write(">>> Situação: ");
+                    int resposta = Convert.ToInt32(Console.ReadLine());
+                    string Nome = "";
+                    while (true)
+                    {
+                        if (resposta == 1)
+                        {
+                            Nome = "Disponivel";
+                            break;
+                        }
+                        else if (resposta == 2)
+                        {
+                            Nome = "Alugado";
+                            break;
+                        }
+                        else if (resposta == 3)
+                        {
+                            Nome = "Em Manutenção";
+                            break;
+                        }
+                        else if (resposta == 4)
+                        {
+                            Nome = "Vendido";
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("OPÇÃO INVALIDA!!! - Digite novamente.");
+                        }
+                    }
+
+                    Console.WriteLine("Login de Cadastro:");
+                    string LoginCadastro = Console.ReadLine();
+                    Console.WriteLine("=====================================");
+
+                    Situacao situacao = new Situacao(Nome, LoginCadastro);
+
+                    situacaoService.Atualizar(IdVeiculo, situacao);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Veiculo atualizado com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
             // OFF CONTROLE DE FROTA

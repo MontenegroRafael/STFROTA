@@ -11,6 +11,7 @@ namespace Client.Models
         public string Nome { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
+        public Veiculo IdVeiculo { get; set; }
         public DateTime DataAtualizacao { get; set; }
 
         public Situacao(string nome, string loginCadastro)
@@ -18,6 +19,7 @@ namespace Client.Models
             Nome = nome;
             DataCadastro = DateTime.Now;
             LoginCadastro = loginCadastro;
+            DataAtualizacao = DateTime.Now;
         }
 
     }

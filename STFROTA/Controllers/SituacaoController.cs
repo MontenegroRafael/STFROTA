@@ -24,5 +24,14 @@ namespace STFROTA.Controllers
             var vEncontrado = repositorioSituacao.Cadastrar(situacao.IdEncontrar, situacao.Cadastrar);
             return Ok(vEncontrado);
         }
+
+        [HttpPut]  // ATUALIZAR SITUAÇÃO DO VEICULO POR ID
+        public IActionResult Atualizar(AtualizarSituacaoModel situacao)
+        {
+            var vEncontrado = repositorioSituacao.Atualizar(situacao.IdEncontrar, situacao.Atualizar);
+            return Ok(vEncontrado);
+        
+        }
     }
+
 }

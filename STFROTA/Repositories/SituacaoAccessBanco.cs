@@ -42,5 +42,34 @@ namespace STFROTA.Repositories
                 return false;
             }
         }
+
+        public bool Atualizar(int idVeiculo, Situacao situacao)
+        {
+            try
+            {
+                var query = @"UPDATE Situacoes SET Nome = @nome, DataAtualizacao = @dataAtualizacao, LoginCadastro = @loginCadastro
+                                WHERE IdVeiculo = @idVeiculo";
+
+                using (var sql = new SqlConnection(_connection))
+
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+                    command.Parameters.AddWithValue("@nome", situacao.Nome);
+                    command.Parameters.AddWithValue("@loginCadastro", situacao.LoginCadastro);
+                    command.Parameters.AddWithValue("@dataAtualizacao", situacao.DataAtualizacao);
+                    command.Parameters.AddWithValue("@idVeiculo", idVeiculo);
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+                return false;
+            }
+        }
+
     }
 }

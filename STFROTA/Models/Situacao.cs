@@ -11,6 +11,7 @@ namespace STFROTA.Models
         public string Nome { get; set; }
         public DateTime DataCadastro { get; set; }
         public string LoginCadastro { get; set; }
+        public Veiculo IdVeiculo { get; set; }
         public DateTime DataAtualizacao { get; set; }
 
         public Situacao()
