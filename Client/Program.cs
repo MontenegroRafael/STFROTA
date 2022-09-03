@@ -313,7 +313,7 @@ namespace Client
             // OFF CONTROLE DE FROTA
                 else if (opcao == 15)
                 {
-
+                    Console.WriteLine("");
                 }
 
             // SAIR DO PROGRAMA
