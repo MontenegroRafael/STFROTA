@@ -82,15 +82,17 @@ DROP TABLE Alugueis; -- Apagar a tabelo toda Alugueis
 
 CREATE TABLE ControleFrota
 (
-	IdControleFrota int IDENTITY (1,1) NOT NULL,
+	IdVeiculo int NOT NULL,
+	IdAluguel int NOT NULL,
 	IdSituacao int NOT NULL,
-	DataCadastro datetime NOT NULL,
-	LoginCadastro varchar(15) NOT NULL,
 
-	CONSTRAINT Pk_ControleFrota PRIMARY KEY (IdControleFrota),
-	CONSTRAINT Fk_IdSituacao FOREIGN KEY (IdSituacao) REFERENCES Situacoes(IdSituacao),
+	CONSTRAINT Fk_IdVeiculoCTR FOREIGN KEY (IdVeiculo) REFERENCES Veiculos(IdVeiculo),
+	CONSTRAINT Fk_IdAluguelCTR FOREIGN KEY (IdAluguel) REFERENCES Alugueis(IdAluguel),
+	CONSTRAINT Fk_IdSituacaoCTR FOREIGN KEY (IdSituacao) REFERENCES Situacoes(IdSituacao)
 );
 SELECT * FROM ControleFrota; -- Mostra a tabela Controle_Frota
 DROP TABLE ControleFrota; -- Apagar a tabelo toda Controle_Frota
 
 SELECT * FROM Situacoes INNER JOIN Veiculos ON Situacoes.IdVeiculo = Veiculos.IdVeiculo;
+
+
