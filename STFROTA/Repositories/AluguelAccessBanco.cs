@@ -47,5 +47,30 @@ namespace STFROTA.Repositories
             }
 
         }
+
+        public List<AluguelDto> BuscarTodos()
+        {
+            List<AluguelDto> alugueisEncontrados;
+            try
+            {
+                var query = @"SELECT IdCliente, IdVeiculo, DataInicio, DataFim, DataCadastro, LoginCadastro, DataAtualizacao FROM Alugueis";
+
+                using (var connection = new SqlConnection(_connection))
+                {
+
+                    alugueisEncontrados = connection.Query<AluguelDto>(query).ToList();
+                }
+
+                return alugueisEncontrados;
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+
+                return null;
+            }
+        }
     }
 }

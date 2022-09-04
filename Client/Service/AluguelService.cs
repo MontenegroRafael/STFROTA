@@ -33,5 +33,36 @@ namespace Client.Service
                 Console.WriteLine(ex.Message);
             }
         }
+
+        public List<AluguelDto> BuscarTodos()
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response;
+
+            //BUSCA TODOS OS CLIENTES DENTRO DA API;
+            try
+            {
+                //MONTA A REQUEST PARA A API;
+                response = httpClient.GetAsync("https://localhost:44335/aluguel/buscartodos").Result;
+                response.EnsureSuccessStatusCode();
+
+                var resultado = response.Content.ReadAsStringAsync().Result;
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    Console.WriteLine(resultado);
+                    return new List<AluguelDto>();
+                }
+                //CONVERTE OS DADOS RECEBIDOS E RETORNA ELES COMO OBJETOS DO C#;
+                var objetoDesserializado = JsonConvert.DeserializeObject<List<AluguelDto>>(resultado);
+
+                return objetoDesserializado;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<AluguelDto>();
+            }
+        }
     }
 }

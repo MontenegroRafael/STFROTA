@@ -22,7 +22,7 @@ namespace Client
             ClienteService clienteService = new ClienteService();
             VeiculoService veiculoService = new VeiculoService();
             SituacaoService situacaoService = new SituacaoService();
-            AluguelService AluguelService = new AluguelService();
+            AluguelService aluguelService = new AluguelService();
 
             Listar.MostarMenu();
             Console.Write("Qual Opção Deseja? ");
@@ -172,10 +172,23 @@ namespace Client
                     Console.WriteLine("=====================================");
                 }
 
-            // OFF ALUGUEL - MOSTRAR LISTA DE ALUGUEIS
+            // ALUGUEL - MOSTRAR LISTA DE ALUGUEIS
                 else if (opcao == 9)
                 {
-
+                    var resultado = aluguelService.BuscarTodos();
+                    // MOSTRA OS DADOS NA TELA
+                    foreach (var item in resultado)
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("Id Cliente: " + item.IdCliente);
+                        Console.WriteLine("Id Veiculo: " + item.IdVeiculo);
+                        Console.WriteLine("Data Início: " + item.DataInicio);
+                        Console.WriteLine("Data Fim: " + item.DataFim);
+                        Console.WriteLine("Data_Cadastro: " + item.DataCadastro);
+                        Console.WriteLine("Login_Cadastro: " + item.LoginCadastro);
+                        Console.WriteLine("Login_Cadastro: " + item.DataAtualizacao);
+                        Console.WriteLine("=====================================");
+                    }
                 }
 
             // ALUGUEL - CADASTRAR ALUGUEL
@@ -198,7 +211,7 @@ namespace Client
                     string LoginCadastro = Console.ReadLine();
                     Aluguel aluguel = new Aluguel(IdCliente, IdVeiculo, DataInicio, DataFim, LoginCadastro);
 
-                    AluguelService.Salvar(aluguel);
+                    aluguelService.Salvar(aluguel);
                 }
 
             // OFF ALUGUEL - EXCLUIR ALUGUEL POR ID
