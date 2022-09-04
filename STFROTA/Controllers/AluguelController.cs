@@ -29,16 +29,18 @@ namespace STFROTA.Controllers
             return Ok("Adicionado com sucesso!");
         }
 
+        [HttpGet]  // MOSTRAR LISTA DE ALUGUEL
+        public IActionResult BuscarTodos()
+        {
+            var aluguel = repositorioAluguel.BuscarTodos();
+
+            if (aluguel == null || !aluguel.Any())
+                return NotFound(new { mensage = $"Lista vazia." });
+
+            return Ok(aluguel);
+
+        }
+
     }
-    [HttpGet]  // MOSTRAR LISTA DE ALUGUEL
-    public IActionResult BuscarTodos()
-    {
-        var aluguel = repositorioAluguel.BuscarTodos();
-
-        if (aluguel == null || !aluguel.Any())
-            return NotFound(new { mensage = $"Lista vazia." });
-
-        return Ok(aluguel);
-
-    }
+    
 }

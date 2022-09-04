@@ -47,7 +47,9 @@ namespace Client.Menu
             
             try
             {
-                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=SQL_STFROTA;Integrated Security=True;";
+                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+
                 List<Cliente> listarClientes = new List<Cliente>();
 
                 SqlDataReader resultado;
@@ -85,7 +87,8 @@ namespace Client.Menu
 
             try
             {
-                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=SQL_STFROTA;Integrated Security=True;";
+                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
                 List<Veiculo> listarVeiculos = new List<Veiculo>();
 
                 SqlDataReader resultado;
@@ -123,7 +126,8 @@ namespace Client.Menu
 
             try
             {
-                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=SQL_STFROTA;Integrated Security=True;";
+                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
                 List<Veiculo> listarVeiculos = new List<Veiculo>();
                 List<Situacao> listarVeiculos1 = new List<Situacao>();
 
