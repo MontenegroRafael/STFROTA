@@ -49,8 +49,8 @@ namespace Client.Menu
             
             try
             {
-                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";
-                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                //string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
+                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
 
                 List<Cliente> listarClientes = new List<Cliente>();
 
@@ -89,8 +89,8 @@ namespace Client.Menu
 
             try
             {
-                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";
-                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                //string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
+                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
                 List<Veiculo> listarVeiculos = new List<Veiculo>();
 
                 SqlDataReader resultado;
@@ -128,8 +128,8 @@ namespace Client.Menu
 
             try
             {
-                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";
-                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
+                //string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
+                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
                 List<Veiculo> listarVeiculos = new List<Veiculo>();
                 List<Situacao> listarVeiculos1 = new List<Situacao>();
 
@@ -171,8 +171,8 @@ namespace Client.Menu
 
             try
             {
-                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
-                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
+                //string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
+                string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
 
                 List<Aluguel> listarAlugueis = new List<Aluguel>();
 
@@ -210,7 +210,7 @@ namespace Client.Menu
 
     }
 
-    public static class Extensions // extensão criada para quando o valor resgatado do banco for NULL então fica vazio (Empty)
+    public static class Extensions // EXTENSÃO CRIADA PARA QUANDO O VALOR RESGATADO DO BANCO FOR NULL ENTÃO FICA VAZIO (Empty)
     {
         public static string SafeGetString(this SqlDataReader reader, int colIndex)
         {

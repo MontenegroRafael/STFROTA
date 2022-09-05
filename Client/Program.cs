@@ -187,7 +187,7 @@ namespace Client
                         Console.WriteLine("Data Fim: " + item.DataFim);
                         Console.WriteLine("Data_Cadastro: " + item.DataCadastro);
                         Console.WriteLine("Login_Cadastro: " + item.LoginCadastro);
-                        Console.WriteLine("Login_Cadastro: " + item.DataAtualizacao);
+                        //Console.WriteLine("Login_Cadastro: " + item.DataAtualizacao);
                         Console.WriteLine("=====================================");
                     }
                 }
