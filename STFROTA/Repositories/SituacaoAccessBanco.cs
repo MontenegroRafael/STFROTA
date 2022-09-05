@@ -11,7 +11,7 @@ namespace STFROTA.Repositories
 {
     public class SituacaoAccessBanco
     {
-        private readonly string _connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=SQL_STFROTA;Integrated Security=True;";
+        private readonly string _connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";
         //private readonly string _connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
 
         public bool Cadastrar(int idVeiculo, Situacao situacao)

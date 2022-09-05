@@ -28,6 +28,15 @@ namespace Client.Models
             DataFim = dataFim;
             DataCadastro = DateTime.Now;
             LoginCadastro = loginCadastro;
+            DataAtualizacao = DateTime.Now;
+            
+        }
+
+        public Aluguel(int idAluguel, int idCliente, int idVeiculo)
+        {
+            IdAluguel = idAluguel;
+            IdCliente = idCliente;
+            IdVeiculo = idVeiculo;
             
         }
     }

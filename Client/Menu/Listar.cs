@@ -4,11 +4,13 @@ using System.Text;
 using Client.Models;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Data;
 
 namespace Client.Menu
 {
     public class Listar
     {
+
         public static void MostarMenu()
         {
 
@@ -47,7 +49,7 @@ namespace Client.Menu
             
             try
             {
-                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=SQL_STFROTA;Integrated Security=True;";
+                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";
                 //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
 
                 List<Cliente> listarClientes = new List<Cliente>();
@@ -87,7 +89,7 @@ namespace Client.Menu
 
             try
             {
-                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=SQL_STFROTA;Integrated Security=True;";
+                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";
                 //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
                 List<Veiculo> listarVeiculos = new List<Veiculo>();
 
@@ -126,7 +128,7 @@ namespace Client.Menu
 
             try
             {
-                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=SQL_STFROTA;Integrated Security=True;";
+                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";
                 //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";
                 List<Veiculo> listarVeiculos = new List<Veiculo>();
                 List<Situacao> listarVeiculos1 = new List<Situacao>();
@@ -164,6 +166,48 @@ namespace Client.Menu
             }
         }
 
+        public static void AluguelMostrarTodos()
+        {
+
+            try
+            {
+                string connection = @"Data Source=IDESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
+                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
+
+                List<Aluguel> listarAlugueis = new List<Aluguel>();
+
+                SqlDataReader resultado;
+                var query = "SELECT a.IdAluguel, a.IdCliente, a.IdVeiculo FROM Alugueis a";
+
+                using (var sql = new SqlConnection(connection))
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+                    command.Connection.Open();
+                    resultado = command.ExecuteReader();
+
+
+                    while (resultado.Read())
+                    {
+                        listarAlugueis.Add(new Aluguel(resultado.GetInt32(resultado.GetOrdinal("IdAluguel")),
+                                                       resultado.GetInt32(resultado.GetOrdinal("IdCliente")),
+                                                       resultado.GetInt32(resultado.GetOrdinal("IdVeiculo"))));
+                    }
+                }
+                Console.WriteLine("========Listagem========");
+                foreach (Aluguel p in listarAlugueis)
+                {
+                    Console.WriteLine(" IdAluguel: " + p.IdAluguel);
+                    Console.WriteLine(" IdCliente: " + p.IdCliente);
+                    Console.WriteLine(" IdVeiculo: " + p.IdVeiculo);
+                    Console.WriteLine("---------------------------");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+            }
+        }
+
     }
 
     public static class Extensions // extensão criada para quando o valor resgatado do banco for NULL então fica vazio (Empty)
@@ -174,6 +218,8 @@ namespace Client.Menu
                 return reader.GetString(colIndex);
             return string.Empty;
         }
+
+        
 
     }
 }

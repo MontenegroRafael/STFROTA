@@ -48,7 +48,8 @@ namespace Client
                 }
 
             // CLIENTE - CADASTRAR CLIENTE
-                else if (opcao == 2)
+                else 
+                if (opcao == 2)
                 {
                     Console.WriteLine("Informe os dados do Cliente:");
                     Console.WriteLine("Nome:");
@@ -217,7 +218,11 @@ namespace Client
             // OFF ALUGUEL - EXCLUIR ALUGUEL POR ID
                 else if (opcao == 11)
                 {
+                    Listar.VeiculoMostrarIdModelo();
+                    Console.Write("Informe o MODELO do veiculo para excluir: ");
+                    string modelo = Console.ReadLine();
 
+                    veiculoService.Remover(modelo);
                 }
 
             // OFF ALUGUEL - ATUALIZAR ALUGUEL POR ID
