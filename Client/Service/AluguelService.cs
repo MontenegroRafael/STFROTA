@@ -64,5 +64,63 @@ namespace Client.Service
                 return new List<AluguelDto>();
             }
         }
+
+        public void Atualizar(int idAluguel, Aluguel aluguel)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response;
+
+            var viewModel = new
+            {
+                IdEncontrar = idAluguel,
+                Atualizar = aluguel
+            };
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(viewModel);
+                // MONTA A REQUEST PARA A API;
+                response = httpClient.PutAsync($"https://localhost:44335/aluguel/atualizar", new StringContent(json, Encoding.UTF8, "application/json")).Result;
+
+                // CONVERTE OS DADOS RECEBIDOS E RETORNA ELES COMO OBJETOS DE C#;
+                var resultado = response.Content.ReadAsStringAsync().Result;
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    Console.WriteLine(resultado);
+                }
+
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void Remover(int idAluguel)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response;
+
+            try
+            {
+                // MONTA A REQUEST PARA A API;
+                response = httpClient.DeleteAsync($"https://localhost:44335/aluguel/remover?modelo={idAluguel}").Result;
+
+                // CONVERTE OS DADOS RECEBIDOS E RETORNA ELES COMO OBJETOS DO C#;
+                var resultado = response.Content.ReadAsStringAsync().Result;
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    Console.WriteLine(resultado);
+                }
+
+
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

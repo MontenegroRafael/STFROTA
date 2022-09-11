@@ -41,6 +41,27 @@ namespace STFROTA.Controllers
 
         }
 
+
+        [HttpPut]  // ATUALIZAR ALUGUEL POR ID
+        public IActionResult Atualizar(AtualizarAluguelModel aluguel)
+        {
+            var aEncontrado = repositorioAluguel.Atualizar(aluguel.IdEncontrar, aluguel.Atualizar);
+            return Ok(aEncontrado);
+        }
+
+        [HttpDelete]  // DELETAR ALUGUEL POR ID
+        public IActionResult Remover(int idAluguel)
+        {
+            var aEncontrado = repositorioAluguel.BuscarPorId(idAluguel);
+
+            if (aEncontrado == null)
+                return NotFound("Não há nenhum registro com esse id.");
+
+            repositorioAluguel.Remover(aEncontrado);
+
+            return Ok();
+        }
+
     }
     
 }

@@ -72,5 +72,87 @@ namespace STFROTA.Repositories
                 return null;
             }
         }
+
+        public AluguelDto BuscarPorId(int idAluguel)
+        {
+            AluguelDto alugueisEncontrados;
+            try
+            {
+                var query = @"SELECT IdCliente, IdVeiculo, DataInicio,DataFim, LoginCadastro FROM Alugueis
+                                      WHERE IdAluguel like CONCAT('%',@idAluguel,'%')";
+
+                using (var connection = new SqlConnection(_connection))
+                {
+                    var parametros = new
+                    {
+                        idAluguel
+                    };
+                    alugueisEncontrados = connection.QueryFirstOrDefault<AluguelDto>(query, parametros);
+                }
+
+                return alugueisEncontrados;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+                return null;
+            }
+
+        }
+
+        public bool Atualizar(int idAluguel, Aluguel aluguel)
+        {
+            try
+            {
+                var query = @"UPDATE Alugueis SET IdCliente = @idCliente, IdVeiculo = @idVeiculo, DataInicio = @dataInicio, DataFim = @dataFim, LoginCadastro = @loginCadastro , DataAtualizacao = @dataAtualizacao
+                                WHERE IdAluguel = @idAluguel";
+
+                using (var sql = new SqlConnection(_connection))
+
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+                    command.Parameters.AddWithValue("@idCliente", aluguel.IdCliente);
+                    command.Parameters.AddWithValue("@idVeiculo", aluguel.IdVeiculo);
+                    command.Parameters.AddWithValue("@dataInicio", aluguel.DataInicio);
+                    command.Parameters.AddWithValue("@dataFim", aluguel.DataFim);
+                    command.Parameters.AddWithValue("@loginCadastro", aluguel.LoginCadastro);
+                    command.Parameters.AddWithValue("@dataAtualizacao", aluguel.DataAtualizacao);
+                    command.Parameters.AddWithValue("@idAluguel", idAluguel);
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+                return false;
+            }
+        }
+        public void Remover(AluguelDto idAluguel)
+        {
+            try
+            {
+                var query = @"DELETE FROM Alugueis WHERE IdAluguel = @idAluguel";
+
+                using (var sql = new SqlConnection(_connection))
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+
+                    command.Parameters.AddWithValue("@idAluguel", idAluguel.IdAluguel);
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+            }
+
+        }
+
     }
 }

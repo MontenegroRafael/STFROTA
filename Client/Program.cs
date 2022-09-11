@@ -48,7 +48,7 @@ namespace Client
                 }
 
             // CLIENTE - CADASTRAR CLIENTE
-                else 
+                
                 if (opcao == 2)
                 {
                     Console.WriteLine("Informe os dados do Cliente:");
@@ -215,20 +215,41 @@ namespace Client
                     aluguelService.Salvar(aluguel);
                 }
 
-            // OFF ALUGUEL - EXCLUIR ALUGUEL POR ID
+            // ALUGUEL - EXCLUIR ALUGUEL POR ID
                 else if (opcao == 11)
                 {
-                    Listar.VeiculoMostrarIdModelo();
-                    Console.Write("Informe o MODELO do veiculo para excluir: ");
-                    string modelo = Console.ReadLine();
+                    Listar.AluguelMostrarTodos();
+                    Console.Write("Informe o ID do aluguel para excluir: ");
+                    int idAluguel = Convert.ToInt32(Console.ReadLine());
 
-                    veiculoService.Remover(modelo);
+                    aluguelService.Remover(idAluguel);
                 }
 
             // OFF ALUGUEL - ATUALIZAR ALUGUEL POR ID
                 else if (opcao == 12)
                 {
+                    Listar.VeiculoMostrarIdModelo();
+                    Console.Write("Informe o Id do veiculo para atualizar: ");
+                    int idVeiculo = Convert.ToInt32(Console.ReadLine());
 
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("Informe os dados do Veiculo:");
+
+                    Console.WriteLine("Modelo:");
+                    string Modelo = Console.ReadLine();
+                    Console.WriteLine("Placa: ");
+                    string Placa = Console.ReadLine();
+                    Console.WriteLine("Login de Cadastro:");
+                    string LoginCadastro = Console.ReadLine();
+                    Console.WriteLine("=====================================");
+
+                    Veiculo veiculo = new Veiculo(Modelo, Placa, LoginCadastro);
+
+                    veiculoService.Atualizar(idVeiculo, veiculo);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Veiculo atualizado com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
             // SITUAÇÃO - CADASTRAR SITUAÇÃO
