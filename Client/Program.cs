@@ -228,27 +228,31 @@ namespace Client
             // OFF ALUGUEL - ATUALIZAR ALUGUEL POR ID
                 else if (opcao == 12)
                 {
-                    Listar.VeiculoMostrarIdModelo();
-                    Console.Write("Informe o Id do veiculo para atualizar: ");
-                    int idVeiculo = Convert.ToInt32(Console.ReadLine());
+                    Listar.AluguelMostrarTodos();
+                    Console.Write("Informe o Id do aluguel para atualizar: ");
+                    int idAluguel = Convert.ToInt32(Console.ReadLine());
 
                     Console.WriteLine("=====================================");
-                    Console.WriteLine("Informe os dados do Veiculo:");
-
-                    Console.WriteLine("Modelo:");
-                    string Modelo = Console.ReadLine();
-                    Console.WriteLine("Placa: ");
-                    string Placa = Console.ReadLine();
-                    Console.WriteLine("Login de Cadastro:");
+                    Console.WriteLine("Informe os novos dados do Aluguel:");
+                    Console.WriteLine("=====================================");
+                    Listar.ClienteMostrarIdNome();
+                    Console.Write(">>> Id do Cliente: ");
+                    int IdCliente = Convert.ToInt32(Console.ReadLine());
+                    Listar.VeiculoMostrarIdModeloSituacao();
+                    Console.Write(">>> Id do Veiculo: ");
+                    int IdVeiculo = Convert.ToInt32(Console.ReadLine());
+                    Console.Write(">>> Início do Aluguel - DATA: ");
+                    DateTime DataInicio = Convert.ToDateTime(Console.ReadLine());
+                    Console.Write(">>> Fim do Aluguel - DATA: ");
+                    DateTime DataFim = Convert.ToDateTime(Console.ReadLine());
+                    Console.Write("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
-                    Console.WriteLine("=====================================");
+                    Aluguel aluguel = new Aluguel(IdCliente, IdVeiculo, DataInicio, DataFim, LoginCadastro);
 
-                    Veiculo veiculo = new Veiculo(Modelo, Placa, LoginCadastro);
-
-                    veiculoService.Atualizar(idVeiculo, veiculo);
+                    aluguelService.Atualizar(idAluguel, aluguel);
 
                     Console.WriteLine("=====================================");
-                    Console.WriteLine(" - Veiculo atualizado com sucesso!");
+                    Console.WriteLine(" - Aluguel atualizado com sucesso!");
                     Console.WriteLine("=====================================");
                 }
 
