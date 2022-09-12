@@ -23,6 +23,7 @@ namespace Client
             VeiculoService veiculoService = new VeiculoService();
             SituacaoService situacaoService = new SituacaoService();
             AluguelService aluguelService = new AluguelService();
+            ControleFrotaService controleFrotaService = new ControleFrotaService();
 
             Listar.MostarMenu();
             Console.Write("Qual Opção Deseja? ");
@@ -239,9 +240,9 @@ namespace Client
                         Console.WriteLine("Id Veiculo: " + item.IdVeiculo);
                         Console.WriteLine("Data Início: " + item.DataInicio);
                         Console.WriteLine("Data Fim: " + item.DataFim);
-                        Console.WriteLine("Data_Cadastro: " + item.DataCadastro);
-                        Console.WriteLine("Login_Cadastro: " + item.LoginCadastro);
-                        //Console.WriteLine("Login_Cadastro: " + item.DataAtualizacao);
+                        Console.WriteLine("Data do Cadastro: " + item.DataCadastro);
+                        Console.WriteLine("Login de Cadastro: " + item.LoginCadastro);
+                        Console.WriteLine("Data de Atualizacao: " + item.DataAtualizacao);
                         Console.WriteLine("=====================================");
                     }
                 }
@@ -278,6 +279,10 @@ namespace Client
                     Aluguel aluguel = new Aluguel(IdCliente, IdVeiculo, DataInicio, DataFim, LoginCadastro);
 
                     aluguelService.Salvar(aluguel);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Aluguel CADASTRADO com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
             // ALUGUEL - EXCLUIR ALUGUEL POR ID
@@ -288,15 +293,18 @@ namespace Client
                     int idAluguel = Convert.ToInt32(Console.ReadLine());
 
                     aluguelService.Remover(idAluguel);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Aluguel DELETADO com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
-            // OFF ALUGUEL - ATUALIZAR ALUGUEL POR ID
+            // ALUGUEL - ATUALIZAR ALUGUEL POR ID
                 else if (opcao == 12)
                 {
                     Listar.AluguelMostrarTodos();
                     Console.Write("Informe o Id do aluguel para atualizar: ");
                     int idAluguel = Convert.ToInt32(Console.ReadLine());
-
                     Console.WriteLine("=====================================");
                     Console.WriteLine("Informe os novos dados do Aluguel:");
                     Console.WriteLine("=====================================");
@@ -328,7 +336,7 @@ namespace Client
                     aluguelService.Atualizar(idAluguel, aluguel);
 
                     Console.WriteLine("=====================================");
-                    Console.WriteLine(" - Aluguel atualizado com sucesso!");
+                    Console.WriteLine(" - Aluguel ATUALIZADO com sucesso!");
                     Console.WriteLine("=====================================");
                 }
 
@@ -460,7 +468,8 @@ namespace Client
             // OFF CONTROLE DE FROTA
                 else if (opcao == 15)
                 {
-                    Console.WriteLine("");
+                    Listar.AluguelControle();
+
                 }
 
             // SAIR DO PROGRAMA

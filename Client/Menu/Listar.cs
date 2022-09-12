@@ -15,34 +15,24 @@ namespace Client.Menu
         {
 
             Console.WriteLine("|******************************** Menu ********************************|");
-            Console.WriteLine("|______________________________ Cliente  ______________________________|");
-            Console.WriteLine("|                                                                      |");
-            Console.WriteLine("|>>> [ 1  ] - Listar Todos                                             |");
-            Console.WriteLine("|>>> [ 2  ] - Cadastrar                                                |");
-            Console.WriteLine("|>>> [ 3  ] - Excluir                                                  |");
-            Console.WriteLine("|>>> [ 4  ] - Atualizar                                                |");
-            Console.WriteLine("|______________________________ Veiculo  ______________________________|");
-            Console.WriteLine("|                                                                      |");
-            Console.WriteLine("|>>> [ 5  ] - Listar Todos                                             |");
-            Console.WriteLine("|>>> [ 6  ] - Cadastrar                                                |");
-            Console.WriteLine("|>>> [ 7  ] - Excluir                                                  |");
-            Console.WriteLine("|>>> [ 8  ] - Atualizar                                                |");
-            Console.WriteLine("|______________________________ Aluguel  ______________________________|");
-            Console.WriteLine("|                                                                      |");
-            Console.WriteLine("|>>> [ 9  ] - Listar Todos                                             |");
-            Console.WriteLine("|>>> [ 10 ] - Cadastrar                                                |");
-            Console.WriteLine("|>>> [ 11 ] - Excluir por ID                                           |");
-            Console.WriteLine("|>>> [ 12 ] - Atualizar                                                |");
-            Console.WriteLine("|________________________ Situação do Veiculo _________________________|");
-            Console.WriteLine("|                                                                      |");
-            Console.WriteLine("|>>> [ 13 ] - Cadastrar                                                |");
-            Console.WriteLine("|>>> [ 14 ] - Atualizar                                                |");
-            Console.WriteLine("|________________________  Controle de Frota  _________________________|");
-            Console.WriteLine("|                                                                      |");
-            Console.WriteLine("|>>> [ 15 ] - Listar Todos                                             |");
-            Console.WriteLine("|______________________________________________________________________|");
-            Console.WriteLine("|                                                                      |");
-            Console.WriteLine("|>>> [ 0  ] - Sair");
+            Console.WriteLine("|___________  Cliente  ____________|_____________  Veículo  ___________|");
+            Console.WriteLine("|                                  |                                   |");
+            Console.WriteLine("|>>> [ 1  ] - Listar Todos         | >>> [ 5  ] - Listar Todos         |");
+            Console.WriteLine("|>>> [ 2  ] - Cadastrar            | >>> [ 6  ] - Cadastrar            |");
+            Console.WriteLine("|>>> [ 3  ] - Excluir              | >>> [ 7  ] - Excluir              |");
+            Console.WriteLine("|>>> [ 4  ] - Atualizar            | >>> [ 8  ] - Atualizar            |");
+            Console.WriteLine("|                                  |                                   |");
+            Console.WriteLine("|___________  Aluguel  ____________|_______  Situação do Veiculo_______|");
+            Console.WriteLine("|                                  |                                   |");
+            Console.WriteLine("|>>> [ 9  ] - Listar Todos         | >>> [ 13 ] - Cadastrar            |");
+            Console.WriteLine("|>>> [ 10 ] - Cadastrar            | >>> [ 14 ] - Atualizar            |");
+            Console.WriteLine("|>>> [ 11 ] - Excluir              |                                   |");
+            Console.WriteLine("|>>> [ 12 ] - Atualizar            |                                   |");
+            Console.WriteLine("|                                  |                                   |");
+            Console.WriteLine("|______  Controle de Frota  _______|___________  Finalizar  ___________|");
+            Console.WriteLine("|                                  |                                   |");
+            Console.WriteLine("|>>> [ 15 ] - Listar Todos         | >>> [ 0  ] - Sair                 |");
+            Console.WriteLine("|__________________________________|___________________________________|");
         }
         public static void ClienteMostrarIdNome()
         {
@@ -70,7 +60,8 @@ namespace Client.Menu
                                                      resultado.GetString(resultado.GetOrdinal("Nome"))));
                     }
                 }
-                Console.WriteLine("========Listagem========");
+                Console.WriteLine("=====================================");
+                Console.WriteLine("======== Listagem de Clientes =======");
                 foreach (Cliente p in listarClientes)
                 {
                     Console.WriteLine(" Id: " + p.IdCliente);
@@ -109,7 +100,8 @@ namespace Client.Menu
                                                      resultado.GetString(resultado.GetOrdinal("Modelo"))));
                     }
                 }
-                Console.WriteLine("========Listagem========");
+                
+                Console.WriteLine("======= Listagem de Veiculos ========");
                 foreach (Veiculo p in listarVeiculos)
                 {
                     Console.WriteLine(" Id: " + p.IdVeiculo);
@@ -151,7 +143,8 @@ namespace Client.Menu
                         listarVeiculos1.Add(new Situacao(resultado.SafeGetString(resultado.GetOrdinal("Nome"))));
                     }
                 }
-                Console.WriteLine("========Listagem========");
+                
+                Console.WriteLine("= Listagem de Veiculos/Situação ==");
                 for (int i = 0; i < listarVeiculos.Count; i++)
                 {
                     Console.WriteLine(" Id: " + listarVeiculos[i].IdVeiculo);
@@ -207,6 +200,50 @@ namespace Client.Menu
                 Console.WriteLine("Erro: " + ex.Message);
             }
         }
+        public static void AluguelControle()
+        {
+
+            try
+            {
+                string connection = @"Data Source=DESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
+                //string connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
+                List<Veiculo> listarVeiculos = new List<Veiculo>();
+                List<Situacao> listarVeiculos1 = new List<Situacao>();
+
+                SqlDataReader resultado;
+                var query = "SELECT v.IdVeiculo, v.Modelo, s.Nome FROM Veiculos v LEFT JOIN Situacoes s ON v.IdVeiculo = s.IdVeiculo ";
+                //SELECT p.Id, p.Nome, p.Cpf, p.Rg, p.DatadeNascimento, p.Naturalidade, t.Numero, t.Ddd
+                //FROM Pessoa p LEFT JOIN Telefone t ON p.Id = t.IdPessoa ";
+                using (var sql = new SqlConnection(connection))
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+                    command.Connection.Open();
+                    resultado = command.ExecuteReader();
+
+
+                    while (resultado.Read())
+                    {
+                        listarVeiculos.Add(new Veiculo(resultado.GetInt32(resultado.GetOrdinal("IdVeiculo")),
+                                                     resultado.GetString(resultado.GetOrdinal("Modelo"))));
+                        listarVeiculos1.Add(new Situacao(resultado.SafeGetString(resultado.GetOrdinal("Nome"))));
+                    }
+                }
+
+                Console.WriteLine("= Listagem de Veiculos/Situação ==");
+                for (int i = 0; i < listarVeiculos.Count; i++)
+                {
+                    Console.WriteLine(" Id: " + listarVeiculos[i].IdVeiculo);
+                    Console.WriteLine(" Modelo: " + listarVeiculos[i].Modelo);
+                    Console.WriteLine(" Situação: " + listarVeiculos1[i].Nome);
+                    Console.WriteLine("---------------------------");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message);
+            }
+        }
+
 
     }
 
