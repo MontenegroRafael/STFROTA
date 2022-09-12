@@ -11,8 +11,8 @@ namespace STFROTA.Repositories
 {
     public class VeiculoAccessBanco
     {
-        private readonly string _connection = @"Data Source=DESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
-        //private readonly string _connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
+        //private readonly string _connection = @"Data Source=DESKTOP-IR1AB95;Initial Catalog=Frota;Integrated Security=True;";//CASA
+        private readonly string _connection = @"Data Source=ITELABD04\SQLEXPRESS;Initial Catalog=Frota;Integrated Security=True;";//SENAC
 
         public bool SalvarVeiculo(Veiculo veiculo)
         {
