@@ -17,11 +17,11 @@ namespace Client.Models
         {
         }
 
-        public Cliente(string nome, string cnh, DateTime dataCadastro, string loginCadastro)
+        public Cliente(string nome, string cnh, string loginCadastro)
         {
             Nome = nome;
             Cnh = cnh;
-            DataCadastro = dataCadastro;
+            DataCadastro = DateTime.Now;
             LoginCadastro = loginCadastro;
             DataAtualizacao = DateTime.Now;
         }
@@ -32,13 +32,13 @@ namespace Client.Models
             Nome = nome;
         }
 
-        public Cliente(string nome, string cnh, string loginCadastro)
-        {
-            Nome = nome;
-            Cnh = cnh;
-            LoginCadastro = loginCadastro;
-            DataAtualizacao = DateTime.Now;
-        }
+        //public Cliente(string nome, string cnh, string loginCadastro)
+        //{
+        //    Nome = nome;
+        //    Cnh = cnh;
+        //    LoginCadastro = loginCadastro;
+        //    DataAtualizacao = DateTime.Now;
+        //}
     }
 }
 

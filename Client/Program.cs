@@ -43,24 +43,25 @@ namespace Client
                         Console.WriteLine("CNH: " + item.Cnh);
                         Console.WriteLine("Data_Cadastro: " + item.DataCadastro);
                         Console.WriteLine("Login_Cadastro: " + item.LoginCadastro);
+                        Console.WriteLine("Login_Cadastro: " + item.DataAtualizacao);
                         Console.WriteLine("=====================================");
                     }
                 }
 
             // CLIENTE - CADASTRAR CLIENTE
                 
-                if (opcao == 2)
+                else if (opcao == 2)
                 {
                     Console.WriteLine("Informe os dados do Cliente:");
                     Console.WriteLine("Nome:");
                     string Nome = Console.ReadLine();
                     Console.WriteLine("CNH: ");
                     string Cnh = Console.ReadLine();
-                    Console.WriteLine("Data de Cadastro:");
-                    DateTime DataCadastro = Convert.ToDateTime(Console.ReadLine());
+                    //Console.WriteLine("Data de Cadastro:");
+                    //DateTime DataCadastro = Convert.ToDateTime(Console.ReadLine());
                     Console.WriteLine("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
-                    Cliente cliente = new Cliente(Nome, Cnh, DataCadastro, LoginCadastro);
+                    Cliente cliente = new Cliente(Nome, Cnh, LoginCadastro);
 
                     clienteService.Salvar(cliente);
                 }

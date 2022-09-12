@@ -51,7 +51,7 @@ namespace STFROTA.Repositories
             List<ClienteDto> clientesEncontrados;
             try
             {
-                var query = @"SELECT IdCliente, Nome, CNH, DataCadastro, LoginCadastro FROM Clientes";
+                var query = @"SELECT IdCliente, Nome, CNH, DataCadastro, LoginCadastro, DataAtualizacao  FROM Clientes";
 
                 using (var connection = new SqlConnection(_connection))
                 {
