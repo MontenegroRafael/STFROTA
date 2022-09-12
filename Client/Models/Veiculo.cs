@@ -13,12 +13,13 @@ namespace Client.Models
         public string LoginCadastro { get; set; }
         public DateTime DataAtualizacao { get; set; }
 
-        public Veiculo(string modelo, string placa, DateTime dataCadastro, string loginCadastro)
+        public Veiculo(string modelo, string placa, string loginCadastro)
         {
             Modelo = modelo;
             Placa = placa;
-            DataCadastro = dataCadastro;
+            DataCadastro = DateTime.Now;
             LoginCadastro = loginCadastro;
+            DataAtualizacao = DateTime.Now;
         }
 
         public Veiculo()
@@ -29,14 +30,6 @@ namespace Client.Models
         {
             IdVeiculo = idVeiculo;
             Modelo = modelo;
-        }
-
-        public Veiculo(string modelo, string placa, string loginCadastro)
-        {
-            Modelo = modelo;
-            Placa = placa;
-            LoginCadastro = loginCadastro;
-            DataAtualizacao = DateTime.Now;
         }
     }
 }

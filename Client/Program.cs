@@ -57,13 +57,15 @@ namespace Client
                     string Nome = Console.ReadLine();
                     Console.WriteLine("CNH: ");
                     string Cnh = Console.ReadLine();
-                    //Console.WriteLine("Data de Cadastro:");
-                    //DateTime DataCadastro = Convert.ToDateTime(Console.ReadLine());
                     Console.WriteLine("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
                     Cliente cliente = new Cliente(Nome, Cnh, LoginCadastro);
 
                     clienteService.Salvar(cliente);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Cliente CADASTRADO com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
             // CLIENTE - EXCLUIR CLIENTE POR NOME
@@ -74,6 +76,10 @@ namespace Client
                     string nome = Console.ReadLine();
 
                     clienteService.Remover(nome);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Cliente DELETADO com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
             // CLIENTE - ATUALIZAR CLIENTE POR ID
@@ -98,7 +104,7 @@ namespace Client
 
                     clienteService.Atualizar(idCliente, cliente);
                     Console.WriteLine("=====================================");
-                    Console.WriteLine(" - Cliente atualizado com sucesso!");
+                    Console.WriteLine(" - Cliente ATUALIZADO com sucesso!");
                     Console.WriteLine("=====================================");
 
                 }
@@ -116,6 +122,7 @@ namespace Client
                         Console.WriteLine("Placa: " + item.Placa);
                         Console.WriteLine("Data_Cadastro: " + item.DataCadastro);
                         Console.WriteLine("Login_Cadastro: " + item.LoginCadastro);
+                        Console.WriteLine("Login_Cadastro: " + item.DataAtualizacao);
                         Console.WriteLine("=====================================");
                     }
                 }
@@ -128,13 +135,15 @@ namespace Client
                     string Modelo = Console.ReadLine();
                     Console.WriteLine("Placa: ");
                     string Placa = Console.ReadLine();
-                    Console.WriteLine("Data de Cadastro:");
-                    DateTime DataCadastro = Convert.ToDateTime(Console.ReadLine());
                     Console.WriteLine("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
-                    Veiculo veiculo = new Veiculo(Modelo, Placa, DataCadastro, LoginCadastro);
+                    Veiculo veiculo = new Veiculo(Modelo, Placa, LoginCadastro);
 
                     veiculoService.Salvar(veiculo);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Veiculo CADASTRADO com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
             // VEICULO - EXCLUIR VEICULO POR MODELO
@@ -145,6 +154,10 @@ namespace Client
                     string modelo = Console.ReadLine();
 
                     veiculoService.Remover(modelo);
+
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine(" - Veiculo DELETADO com sucesso!");
+                    Console.WriteLine("=====================================");
                 }
 
             // VEICULO - ATUALIZAR VEICULO POR ID
@@ -170,7 +183,7 @@ namespace Client
                     veiculoService.Atualizar(idVeiculo, veiculo);
 
                     Console.WriteLine("=====================================");
-                    Console.WriteLine(" - Veiculo atualizado com sucesso!");
+                    Console.WriteLine(" - Veiculo ATUALIZADO com sucesso!");
                     Console.WriteLine("=====================================");
                 }
 

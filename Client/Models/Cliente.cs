@@ -31,14 +31,6 @@ namespace Client.Models
             IdCliente = idCliente;
             Nome = nome;
         }
-
-        //public Cliente(string nome, string cnh, string loginCadastro)
-        //{
-        //    Nome = nome;
-        //    Cnh = cnh;
-        //    LoginCadastro = loginCadastro;
-        //    DataAtualizacao = DateTime.Now;
-        //}
     }
 }
 
