@@ -59,6 +59,16 @@ namespace Client
                     string Cnh = Console.ReadLine();
                     Console.WriteLine("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
+                //  VALIDAÇÃO DO LOGIN
+                    while (!Validacao.Validar.Login(LoginCadastro))
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("###### - LOGIN INVALIDO! - ######");
+                        Console.WriteLine("Digite novamente.");
+                        Console.WriteLine("Login de Cadastro:");
+                        LoginCadastro = Console.ReadLine();
+                        Console.WriteLine("=====================================");
+                    }
                     Cliente cliente = new Cliente(Nome, Cnh, LoginCadastro);
 
                     clienteService.Salvar(cliente);
@@ -99,7 +109,16 @@ namespace Client
                     Console.WriteLine("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
                     Console.WriteLine("=====================================");
-
+                //  VALIDAÇÃO DO LOGIN
+                    while (!Validacao.Validar.Login(LoginCadastro))
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("###### - LOGIN INVALIDO! - ######");
+                        Console.WriteLine("Digite novamente.");
+                        Console.WriteLine("Login de Cadastro:");
+                        LoginCadastro = Console.ReadLine();
+                        Console.WriteLine("=====================================");
+                    }
                     Cliente cliente = new Cliente(Nome, Cnh, LoginCadastro);
 
                     clienteService.Atualizar(idCliente, cliente);
@@ -137,6 +156,17 @@ namespace Client
                     string Placa = Console.ReadLine();
                     Console.WriteLine("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
+
+                //  VALIDAÇÃO DO LOGIN
+                    while (!Validacao.Validar.Login(LoginCadastro))
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("###### - LOGIN INVALIDO! - ######");
+                        Console.WriteLine("Digite novamente.");
+                        Console.WriteLine("Login de Cadastro:");
+                        LoginCadastro = Console.ReadLine();
+                        Console.WriteLine("=====================================");
+                    }
                     Veiculo veiculo = new Veiculo(Modelo, Placa, LoginCadastro);
 
                     veiculoService.Salvar(veiculo);
@@ -178,6 +208,16 @@ namespace Client
                     string LoginCadastro = Console.ReadLine();
                     Console.WriteLine("=====================================");
 
+                //  VALIDAÇÃO DO LOGIN
+                    while (!Validacao.Validar.Login(LoginCadastro))
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("###### - LOGIN INVALIDO! - ######");
+                        Console.WriteLine("Digite novamente.");
+                        Console.WriteLine("Login de Cadastro:");
+                        LoginCadastro = Console.ReadLine();
+                        Console.WriteLine("=====================================");
+                    }
                     Veiculo veiculo = new Veiculo(Modelo, Placa, LoginCadastro);
 
                     veiculoService.Atualizar(idVeiculo, veiculo);
@@ -224,6 +264,17 @@ namespace Client
                     DateTime DataFim = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
+
+                //  VALIDAÇÃO DO LOGIN
+                    while (!Validacao.Validar.Login(LoginCadastro))
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("###### - LOGIN INVALIDO! - ######");
+                        Console.WriteLine("Digite novamente.");
+                        Console.WriteLine("Login de Cadastro:");
+                        LoginCadastro = Console.ReadLine();
+                        Console.WriteLine("=====================================");
+                    }
                     Aluguel aluguel = new Aluguel(IdCliente, IdVeiculo, DataInicio, DataFim, LoginCadastro);
 
                     aluguelService.Salvar(aluguel);
@@ -261,6 +312,17 @@ namespace Client
                     DateTime DataFim = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
+
+                //  VALIDAÇÃO DO LOGIN
+                    while (!Validacao.Validar.Login(LoginCadastro))
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("###### - LOGIN INVALIDO! - ######");
+                        Console.WriteLine("Digite novamente.");
+                        Console.WriteLine("Login de Cadastro:");
+                        LoginCadastro = Console.ReadLine();
+                        Console.WriteLine("=====================================");
+                    }
                     Aluguel aluguel = new Aluguel(IdCliente, IdVeiculo, DataInicio, DataFim, LoginCadastro);
 
                     aluguelService.Atualizar(idAluguel, aluguel);
@@ -318,6 +380,16 @@ namespace Client
                     string LoginCadastro = Console.ReadLine();
                     Console.WriteLine("=====================================");
 
+                //  VALIDAÇÃO DO LOGIN
+                    while (!Validacao.Validar.Login(LoginCadastro))
+                    {
+                        Console.WriteLine("=====================================");
+                        Console.WriteLine("###### - LOGIN INVALIDO! - ######");
+                        Console.WriteLine("Digite novamente.");
+                        Console.WriteLine("Login de Cadastro:");
+                        LoginCadastro = Console.ReadLine();
+                        Console.WriteLine("=====================================");
+                    }
                     Situacao situacao = new Situacao(Nome, LoginCadastro);
 
                     situacaoService.Cadastrar(IdVeiculo, situacao);
