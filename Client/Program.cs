@@ -50,15 +50,14 @@ namespace Client
                 }
 
             // CLIENTE - CADASTRAR CLIENTE
-                
                 else if (opcao == 2)
                 {
                     Console.WriteLine("Informe os dados do Cliente:");
-                    Console.WriteLine("Nome:");
+                    Console.Write("Nome: ");
                     string Nome = Console.ReadLine();
-                    Console.WriteLine("CNH: ");
+                    Console.Write("CNH: ");
                     string Cnh = Console.ReadLine();
-                    Console.WriteLine("Login de Cadastro:");
+                    Console.Write("Login de Cadastro: ");
                     string LoginCadastro = Console.ReadLine();
                 //  VALIDAÇÃO DO LOGIN
                     while (!Validacao.Validar.Login(LoginCadastro))
@@ -66,7 +65,7 @@ namespace Client
                         Console.WriteLine("=====================================");
                         Console.WriteLine("###### - LOGIN INVALIDO! - ######");
                         Console.WriteLine("Digite novamente.");
-                        Console.WriteLine("Login de Cadastro:");
+                        Console.Write("Login de Cadastro:");
                         LoginCadastro = Console.ReadLine();
                         Console.WriteLine("=====================================");
                     }
@@ -103,11 +102,11 @@ namespace Client
                     Console.WriteLine("=====================================");
                     Console.WriteLine("Informe os dados do Cliente:");
 
-                    Console.WriteLine("Nome:");
+                    Console.Write("Nome:");
                     string Nome = Console.ReadLine();
-                    Console.WriteLine("CNH: ");
+                    Console.Write("CNH: ");
                     string Cnh = Console.ReadLine();
-                    Console.WriteLine("Login de Cadastro:");
+                    Console.Write("Login de Cadastro:");
                     string LoginCadastro = Console.ReadLine();
                     Console.WriteLine("=====================================");
                 //  VALIDAÇÃO DO LOGIN
@@ -151,11 +150,11 @@ namespace Client
                 else if (opcao == 6)
                 {
                     Console.WriteLine("Informe os dados do Veiculo:");
-                    Console.WriteLine("Modelo:");
+                    Console.Write("Modelo: ");
                     string Modelo = Console.ReadLine();
-                    Console.WriteLine("Placa: ");
+                    Console.Write("Placa: ");
                     string Placa = Console.ReadLine();
-                    Console.WriteLine("Login de Cadastro:");
+                    Console.Write("Login de Cadastro: ");
                     string LoginCadastro = Console.ReadLine();
 
                 //  VALIDAÇÃO DO LOGIN
@@ -201,11 +200,11 @@ namespace Client
                     Console.WriteLine("=====================================");
                     Console.WriteLine("Informe os dados do Veiculo:");
 
-                    Console.WriteLine("Modelo:");
+                    Console.Write("Modelo: ");
                     string Modelo = Console.ReadLine();
-                    Console.WriteLine("Placa: ");
+                    Console.Write("Placa: ");
                     string Placa = Console.ReadLine();
-                    Console.WriteLine("Login de Cadastro:");
+                    Console.Write("Login de Cadastro: ");
                     string LoginCadastro = Console.ReadLine();
                     Console.WriteLine("=====================================");
 
@@ -215,7 +214,7 @@ namespace Client
                         Console.WriteLine("=====================================");
                         Console.WriteLine("###### - LOGIN INVALIDO! - ######");
                         Console.WriteLine("Digite novamente.");
-                        Console.WriteLine("Login de Cadastro:");
+                        Console.Write("Login de Cadastro: ");
                         LoginCadastro = Console.ReadLine();
                         Console.WriteLine("=====================================");
                     }
@@ -263,7 +262,7 @@ namespace Client
                     DateTime DataInicio = Convert.ToDateTime(Console.ReadLine());
                     Console.Write(">>> Fim do Aluguel - DATA: ");
                     DateTime DataFim = Convert.ToDateTime(Console.ReadLine());
-                    Console.Write("Login de Cadastro:");
+                    Console.Write("Login de Cadastro: ");
                     string LoginCadastro = Console.ReadLine();
 
                 //  VALIDAÇÃO DO LOGIN
@@ -272,7 +271,7 @@ namespace Client
                         Console.WriteLine("=====================================");
                         Console.WriteLine("###### - LOGIN INVALIDO! - ######");
                         Console.WriteLine("Digite novamente.");
-                        Console.WriteLine("Login de Cadastro:");
+                        Console.Write("Login de Cadastro: ");
                         LoginCadastro = Console.ReadLine();
                         Console.WriteLine("=====================================");
                     }
@@ -318,7 +317,7 @@ namespace Client
                     DateTime DataInicio = Convert.ToDateTime(Console.ReadLine());
                     Console.Write(">>> Fim do Aluguel - DATA: ");
                     DateTime DataFim = Convert.ToDateTime(Console.ReadLine());
-                    Console.Write("Login de Cadastro:");
+                    Console.Write("Login de Cadastro: ");
                     string LoginCadastro = Console.ReadLine();
 
                 //  VALIDAÇÃO DO LOGIN
@@ -327,7 +326,7 @@ namespace Client
                         Console.WriteLine("=====================================");
                         Console.WriteLine("###### - LOGIN INVALIDO! - ######");
                         Console.WriteLine("Digite novamente.");
-                        Console.WriteLine("Login de Cadastro:");
+                        Console.Write("Login de Cadastro: ");
                         LoginCadastro = Console.ReadLine();
                         Console.WriteLine("=====================================");
                     }
@@ -344,7 +343,7 @@ namespace Client
                 else if (opcao == 13)
                 {
                     Listar.VeiculoMostrarIdModelo();
-                    Console.WriteLine(" Digite o ID do veiculo para cadastrar a SITUAÇÃO: ");
+                    Console.Write(" Digite o ID do veiculo para cadastrar a SITUAÇÃO: ");
                     int IdVeiculo = Convert.ToInt32(Console.ReadLine());
 
                     Console.WriteLine("=====================================");
@@ -384,7 +383,7 @@ namespace Client
                             Console.WriteLine("OPÇÃO INVALIDA!!! - Digite novamente.");
                         }
                     }
-                    Console.WriteLine("Login de Cadastro:");
+                    Console.Write("Login de Cadastro: ");
                     string LoginCadastro = Console.ReadLine();
                     Console.WriteLine("=====================================");
 
@@ -394,7 +393,7 @@ namespace Client
                         Console.WriteLine("=====================================");
                         Console.WriteLine("###### - LOGIN INVALIDO! - ######");
                         Console.WriteLine("Digite novamente.");
-                        Console.WriteLine("Login de Cadastro:");
+                        Console.Write("Login de Cadastro: ");
                         LoginCadastro = Console.ReadLine();
                         Console.WriteLine("=====================================");
                     }
@@ -411,7 +410,7 @@ namespace Client
                 else if (opcao == 14)
                 {
                     Listar.VeiculoMostrarIdModelo();
-                    Console.WriteLine(" Digite o ID do veiculo para atualizar a SITUAÇÃO: ");
+                    Console.Write(" Digite o ID do veiculo para atualizar a SITUAÇÃO: ");
                     int IdVeiculo = Convert.ToInt32(Console.ReadLine());
 
                     Console.WriteLine("=====================================");
@@ -452,7 +451,7 @@ namespace Client
                         }
                     }
 
-                    Console.WriteLine("Login de Cadastro:");
+                    Console.Write("Login de Cadastro: ");
                     string LoginCadastro = Console.ReadLine();
                     Console.WriteLine("=====================================");
 
@@ -465,7 +464,7 @@ namespace Client
                     Console.WriteLine("=====================================");
                 }
 
-            // OFF CONTROLE DE FROTA
+            // CONTROLE DE FROTA
                 else if (opcao == 15)
                 {
                     Listar.AluguelControle();
