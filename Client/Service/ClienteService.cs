@@ -66,6 +66,30 @@ namespace Client.Service
             }
         }
 
+        public void Salvar2(Cliente cliente) // SALVAR VIA API
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response;
+
+            var json = JsonConvert.SerializeObject(cliente);
+
+            try
+            {
+                //monta a request para a api;
+                response = httpClient.PostAsync("https://localhost:44335/cliente/salvarviaapi", new StringContent(json, Encoding.UTF8, "application/json")).Result;
+                response.EnsureSuccessStatusCode();
+
+                var resultado = response.Content.ReadAsStringAsync().Result;
+
+                //converte os dados recebidos e retorna eles como objetos do C#;
+
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public void Remover(string nome)
         {
             HttpClient httpClient = new HttpClient();

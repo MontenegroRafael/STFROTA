@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace STFROTA
+namespace ApiviaRequest
 {
     public class Startup
     {
@@ -27,33 +26,23 @@ namespace STFROTA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: "Mypolicy",
-                                  policy =>
-                                  {
-                                      policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-                                  });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app2, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app2.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
             }
 
-            app2.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
-            app2.UseCors("Mypolicy");
+            app.UseRouting();
 
-            app2.UseRouting();
+            app.UseAuthorization();
 
-            app2.UseAuthorization();
-
-            app2.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });

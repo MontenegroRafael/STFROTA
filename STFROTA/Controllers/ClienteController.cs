@@ -14,6 +14,7 @@ using Dapper;
 namespace STFROTA.Controllers
 {
     [Route("[controller]/[action]")]
+    //[Produces("application/json")]
     [ApiController]
     public class ClienteController : ControllerBase
     {
@@ -22,7 +23,22 @@ namespace STFROTA.Controllers
         ClienteAccessBanco repositorioCliente = new ClienteAccessBanco();
         //private object _clientes;
 
-        
+        [HttpPost]  // CADASTRAR CLIENTE VIA REQUEST
+        public IActionResult Salvar2([FromBody] SalvarClienteModel salvarClienteViewModel)
+        {
+            if (salvarClienteViewModel == null)
+                return Ok("Não foram informados dados");
+
+            if (salvarClienteViewModel.Cliente == null)
+                return Ok("Dados do cliente não informados.");
+
+            var resultado = repositorioCliente.SalvarCliente(salvarClienteViewModel.Cliente);
+
+            if (resultado) return Ok("Cliente cadastrado com sucesso.");
+
+            return Ok("Houve um problema ao salvar. Cliente não cadastrada.");
+        }
+
         [HttpPost]  // CADASTRAR CLIENTE
         public IActionResult Save(Cliente cliente)
         {
